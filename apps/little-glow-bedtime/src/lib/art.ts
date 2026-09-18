@@ -16,6 +16,11 @@ export const chapterArt: Record<string, string> = {
   "ask-the-sun": "/art/23-pip-sun.png",
   "moons-of-mars": "/art/24-pip-mars-moons.png",
   "glow-comes-back": "/art/25-finale-glow-returns.png",
+  "coconut-crackdown": "/art/banana-coconut-crackdown.png",
+  "pineapple-protocol": "/art/banana-pineapple-protocol.png",
+  "blender-of-doom": "/art/banana-blender-of-doom.png",
+  "space-peel": "/art/banana-space-peel.png",
+  "grocery-gauntlet": "/art/banana-grocery-gauntlet.png",
 };
 
 /** Idea panels for the Pip Tries gallery (art 10–16) */

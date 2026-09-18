@@ -6,13 +6,13 @@ Follow tiny firefly **Pip** as she helps dark moon **Luma** remember how to shin
 
 ## Features
 
-- **Story:** *The Moon Forgot Its Glow* (10 chapters)
+- **Stories:** *The Moon Forgot Its Glow*, *Honeybee’s Soft Alarm*, *Banana Boy Adventures*
 - **Songs:** 6 lullaby lyric pages with “Add Suno audio later” placeholders
 - **Sleep timer:** 5 / 10 / 15 / 30 minutes → Sleepy mode overlay
 - **Favorites:** saved in `localStorage`
 - **Monetization (v1):**
   - Free core: home, timer, favorites, Chapter 1, 2 song samples
-  - Soft tip jar: “Buy me a cocoa” (mailto placeholder)
+  - Soft tip jar: “Buy me a cocoa” (`NEXT_PUBLIC_TIP_URL` / `NEXT_PUBLIC_CONTACT_EMAIL`)
   - Optional one-time **Unlock Full Glow** ($3.99 shown) via `localStorage` flag — **no Stripe yet**, **no ads**, **no subscription**
 
 ## Stack
@@ -38,7 +38,9 @@ npm start
 1. Push this repo to GitHub (already set up for `Thinkitbuilditliveit`).
 2. Go to [vercel.com](https://vercel.com) → **Add New Project** → import the GitHub repo.
 3. Framework preset: **Next.js** (auto-detected).
-4. Click **Deploy**. No env vars required for v1.
+4. Click **Deploy**. Optional tip/contact env vars:
+   - `NEXT_PUBLIC_CONTACT_EMAIL`
+   - `NEXT_PUBLIC_TIP_URL`
 5. Optional: add a custom domain later in Project Settings → Domains.
 
 ## Unlock behavior (v1)
