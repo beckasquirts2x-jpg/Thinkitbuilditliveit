@@ -5,7 +5,7 @@ import { useSearchParams } from "next/navigation";
 import { Suspense } from "react";
 import { TipJar } from "@/components/TipJar";
 import { useApp } from "@/components/AppProviders";
-import { UNLOCK_PRICE, APP_NAME } from "@/lib/content";
+import { UNLOCK_PRICE, APP_NAME, HIVE_NIGHTS_PACK, HIVE_NIGHTS_PRICE, stories } from "@/lib/content";
 
 function UnlockInner() {
   const { unlocked, unlock, lock, unlockReady } = useApp();
@@ -36,8 +36,14 @@ function UnlockInner() {
         </p>
 
         <ul className="mt-5 space-y-2 text-sm text-moon-200/90">
-          <li>✓ Full stories — every chapter</li>
-          <li>✓ All lullaby lyric pages</li>
+          <li>
+            ✓ All stories —{" "}
+            {stories.reduce((n, s) => n + s.chapters.length, 0)} chapters
+          </li>
+          <li>
+            ✓ All lullaby lyric pages (
+            {stories.reduce((n, s) => n + s.songs.length, 0)})
+          </li>
           <li>✓ Audio slots (add Suno mp3s later)</li>
           <li>✓ Favorites & sleep timer (already free)</li>
         </ul>
@@ -85,8 +91,20 @@ function UnlockInner() {
       <section className="rounded-3xl border border-white/10 bg-night-900/50 p-5 text-center">
         <h2 className="font-semibold text-glow-gold">Free core stays free</h2>
         <p className="mt-2 text-sm text-moon-200/75">
-          Home, sleep timer, favorites, Chapter 1 samples, and free songs —
-          always available without unlocking.
+          Home, sleep timer, favorites, Chapter 1 of each story, and free song
+          samples — always available without unlocking. Existing Moon Full Glow
+          unlock still works on this device.
+        </p>
+      </section>
+
+      <section className="rounded-3xl border border-white/10 bg-night-900/40 p-5 text-center">
+        <h2 className="font-semibold text-glow-gold">
+          Later: {HIVE_NIGHTS_PACK}
+        </h2>
+        <p className="mt-2 text-sm text-moon-200/75">
+          Suggested Honeybee-only pack at {HIVE_NIGHTS_PRICE}. Not wired to
+          Stripe yet — Full Glow unlocks Honeybee for now. No Stripe keys in
+          this PR.
         </p>
       </section>
 

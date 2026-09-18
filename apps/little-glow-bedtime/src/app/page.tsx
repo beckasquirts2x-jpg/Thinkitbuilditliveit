@@ -6,9 +6,15 @@ import { HOME_HERO } from "@/lib/art";
 import { APP_NAME, AUTHOR, stories } from "@/lib/content";
 
 export default function HomePage() {
-  const moon = stories[0];
-  const freeChapters = moon.chapters.filter((c) => c.preview).length;
-  const freeSongs = moon.songs.filter((s) => s.preview).length;
+  const freeChapters = stories.reduce(
+    (n, s) => n + s.chapters.filter((c) => c.preview).length,
+    0
+  );
+  const freeSongs = stories.reduce(
+    (n, s) => n + s.songs.filter((song) => song.preview).length,
+    0
+  );
+  const storyCount = stories.length;
 
   return (
     <div className="space-y-6">
@@ -33,8 +39,12 @@ export default function HomePage() {
           </div>
         </div>
         <p className="px-6 py-4 text-base text-moon-200">
-          Tiny firefly <strong className="text-glow-soft">Pip</strong> helps
-          moon <strong className="text-glow-soft">Luma</strong> shine again.
+          Three bedtime adventures: firefly{" "}
+          <strong className="text-glow-soft">Pip</strong> helping moon{" "}
+          <strong className="text-glow-soft">Luma</strong>, honeybee{" "}
+          <strong className="text-glow-soft">Buzz</strong> learning a soft alarm,
+          and peel-powered{" "}
+          <strong className="text-glow-soft">Banana Boy</strong> in Giggle Jungle.
         </p>
       </section>
 
@@ -45,7 +55,9 @@ export default function HomePage() {
         >
           <span className="text-4xl">📖</span>
           <span className="mt-2 text-lg font-semibold text-glow-gold">Story</span>
-          <span className="mt-1 text-sm text-moon-200/65">Read with Pip</span>
+          <span className="mt-1 text-sm text-moon-200/65">
+            {storyCount} stories
+          </span>
         </Link>
         <Link
           href="/songs"
