@@ -1,12 +1,17 @@
 "use client";
 
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 import { TipJar } from "@/components/TipJar";
 import { useApp } from "@/components/AppProviders";
 import { UNLOCK_PRICE, APP_NAME } from "@/lib/content";
 
-export default function UnlockPage() {
+function UnlockInner() {
   const { unlocked, unlock, lock, unlockReady } = useApp();
+  const search = useSearchParams();
+  const showDevReset =
+    process.env.NODE_ENV === "development" || search.get("dev") === "1";
 
   return (
     <div className="space-y-6">
@@ -31,9 +36,9 @@ export default function UnlockPage() {
         </p>
 
         <ul className="mt-5 space-y-2 text-sm text-moon-200/90">
-          <li>✓ Full story — all 10 chapters</li>
-          <li>✓ All 6 lullaby lyric pages</li>
-          <li>✓ Audio placeholder slots (Add Suno audio later)</li>
+          <li>✓ Full stories — every chapter</li>
+          <li>✓ All lullaby lyric pages</li>
+          <li>✓ Audio slots (add Suno mp3s later)</li>
           <li>✓ Favorites & sleep timer (already free)</li>
         </ul>
 
@@ -50,13 +55,15 @@ export default function UnlockPage() {
             >
               Read the full story
             </Link>
-            <button
-              type="button"
-              onClick={lock}
-              className="w-full text-xs text-moon-200/45 underline"
-            >
-              Reset unlock (dev / testing)
-            </button>
+            {showDevReset && (
+              <button
+                type="button"
+                onClick={lock}
+                className="w-full text-xs text-moon-200/45 underline"
+              >
+                Reset unlock (dev)
+              </button>
+            )}
           </div>
         ) : (
           <div className="mt-6 space-y-3">
@@ -68,7 +75,7 @@ export default function UnlockPage() {
               Unlock Full Glow · {UNLOCK_PRICE}
             </button>
             <p className="text-center text-xs text-moon-200/50">
-              v1 uses a local unlock flag (localStorage). Stripe checkout comes
+              v1 uses a local unlock flag on this device. Stripe checkout comes
               later — this simulates a successful one-time purchase.
             </p>
           </div>
@@ -78,17 +85,27 @@ export default function UnlockPage() {
       <section className="rounded-3xl border border-white/10 bg-night-900/50 p-5 text-center">
         <h2 className="font-semibold text-glow-gold">Free core stays free</h2>
         <p className="mt-2 text-sm text-moon-200/75">
-          Home, sleep timer, favorites, Chapter 1, and 2 song samples — always
-          available without unlocking.
+          Home, sleep timer, favorites, Chapter 1 samples, and free songs —
+          always available without unlocking.
         </p>
       </section>
 
       <section className="flex flex-col items-center gap-3 rounded-3xl border border-white/10 bg-night-900/40 p-5 text-center">
-        <p className="text-sm text-moon-200/70">
-          Prefer a soft tip instead?
-        </p>
+        <p className="text-sm text-moon-200/70">Prefer a soft tip instead?</p>
         <TipJar />
       </section>
     </div>
+  );
+}
+
+export default function UnlockPage() {
+  return (
+    <Suspense
+      fallback={
+        <p className="text-center text-sm text-moon-200/60">Loading…</p>
+      }
+    >
+      <UnlockInner />
+    </Suspense>
   );
 }

@@ -5,26 +5,17 @@ import Image from "next/image";
 type Props = {
   src: string;
   alt: string;
-  /** Smaller thumb for index lists */
   thumb?: boolean;
-  /** Dim/blur when chapter is locked */
   locked?: boolean;
-  className?: string;
 };
 
-export function ChapterHero({
-  src,
-  alt,
-  thumb = false,
-  locked = false,
-  className = "",
-}: Props) {
+export function SongCover({ src, alt, thumb = false, locked = false }: Props) {
   if (thumb) {
     return (
       <span
         className={`relative block h-14 w-14 shrink-0 overflow-hidden rounded-2xl bg-night-900 ${
           locked ? "opacity-70" : ""
-        } ${className}`}
+        }`}
       >
         <Image
           src={src}
@@ -43,18 +34,14 @@ export function ChapterHero({
   }
 
   return (
-    <div
-      className={`relative aspect-[4/3] w-full overflow-hidden rounded-3xl border border-white/10 bg-night-900 shadow-glow glow-art ${
-        locked ? "opacity-80" : ""
-      } ${className}`}
-    >
+    <div className="relative aspect-[4/3] w-full overflow-hidden rounded-3xl border border-white/10 bg-night-900 shadow-glow glow-art">
       <Image
         src={src}
         alt={alt}
         fill
         sizes="(max-width: 512px) 100vw, 512px"
         priority
-        className={`object-cover ${locked ? "brightness-75 blur-[1px]" : ""}`}
+        className="object-cover"
       />
     </div>
   );

@@ -29,11 +29,12 @@ export default function TimerPage() {
         </p>
         <h1 className="mt-3 text-2xl font-bold text-glow-gold">Sleep timer</h1>
         <p className="mt-2 text-sm text-moon-200/75">
-          Pick a cozy countdown. When it ends, Sleepy mode dims the night.
+          Pick a cozy countdown. When it ends, sounds fade and Sleepy mode dims
+          the night.
         </p>
       </header>
 
-      <div className="rounded-3xl border border-glow-gold/25 bg-night-900/70 p-6 text-center">
+      <div className="rounded-3xl border border-glow-gold/25 bg-night-900/70 p-6 text-center glow-soft">
         <p className="text-xs uppercase tracking-wide text-moon-200/50">
           {timerMinutes ? "Time left" : sleepy ? "Sleepy mode" : "Ready"}
         </p>
@@ -84,7 +85,7 @@ export default function TimerPage() {
       )}
 
       <p className="text-center text-xs text-moon-200/50">
-        Client-side only · stays on this device · no account needed
+        Remembers across refresh · stays on this device · no account needed
       </p>
     </div>
   );

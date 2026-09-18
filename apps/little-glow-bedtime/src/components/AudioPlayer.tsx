@@ -2,7 +2,8 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useApp } from "./AppProviders";
-import { onStopAllAudio, stopAllAudio } from "@/lib/audioControl";
+import { fadeOutAndStop, onStopAllAudio, stopAllAudio } from "@/lib/audioControl";
+import { useWakeLock } from "@/hooks/useWakeLock";
 
 type Mode = "loading" | "file" | "speech" | "missing-song";
 
@@ -45,6 +46,8 @@ export function AudioPlayer({ id, title, kind, speakText }: Props) {
   const [duration, setDuration] = useState(0);
   const [rate, setRate] = useState(1);
 
+  useWakeLock(playing);
+
   useEffect(() => {
     let cancelled = false;
     setMode("loading");
@@ -71,11 +74,17 @@ export function AudioPlayer({ id, title, kind, speakText }: Props) {
     };
   }, [id, kind]);
 
-  const pauseFile = useCallback(() => {
+  const pauseFile = useCallback((opts?: { fade?: boolean }) => {
     const el = audioRef.current;
-    if (el) {
-      el.pause();
+    if (!el) {
+      setPlaying(false);
+      return;
     }
+    if (opts?.fade) {
+      void fadeOutAndStop(el).then(() => setPlaying(false));
+      return;
+    }
+    el.pause();
     setPlaying(false);
   }, []);
 
@@ -87,15 +96,15 @@ export function AudioPlayer({ id, title, kind, speakText }: Props) {
   }, []);
 
   useEffect(() => {
-    return onStopAllAudio(() => {
-      pauseFile();
+    return onStopAllAudio((opts) => {
+      pauseFile(opts);
       stopSpeech();
     });
   }, [pauseFile, stopSpeech]);
 
   useEffect(() => {
     if (sleepy) {
-      stopAllAudio();
+      stopAllAudio({ fade: true });
     }
   }, [sleepy]);
 
@@ -200,10 +209,10 @@ export function AudioPlayer({ id, title, kind, speakText }: Props) {
           className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-2xl bg-glow-gold/90 px-4 py-3 text-sm font-semibold text-night-950"
         >
           <span aria-hidden>{playing ? "⏸" : "▶"}</span>
-          {playing ? "Pause reading" : "Read aloud (device voice)"}
+          {playing ? "Pause reading" : "Read aloud"}
         </button>
         <p className="text-center text-xs text-moon-200/55">
-          Interim narration uses your device voice until a recorded file is added.
+          Uses your device voice until a recorded file is added.
         </p>
       </div>
     );

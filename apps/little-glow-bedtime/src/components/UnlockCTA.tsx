@@ -23,7 +23,7 @@ export function UnlockCTA({ compact = false }: { compact?: boolean }) {
     <div className="rounded-3xl border border-glow-gold/30 bg-gradient-to-br from-glow-gold/15 to-transparent p-5 text-center">
       <p className="text-lg font-semibold text-glow-gold">Unlock Full Glow</p>
       <p className="mt-2 text-sm text-moon-200/80">
-        One-time unlock for the full story, all 6 songs, and audio slots.
+        One-time unlock for both bedtime stories, all songs, and audio slots.
       </p>
       <p className="mt-1 text-xs text-moon-200/50">No ads · No subscription</p>
       <Link
