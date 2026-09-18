@@ -1,73 +1,64 @@
 "use client";
 
 import Link from "next/link";
-import { ChapterHero } from "@/components/ChapterHero";
 import { UnlockCTA } from "@/components/UnlockCTA";
 import { useApp } from "@/components/AppProviders";
-import { getChapterArt } from "@/lib/art";
-import { STORY_TITLE, AUTHOR, chapters, canAccessChapter } from "@/lib/content";
+import { AUTHOR, HIVE_NIGHTS_PACK, HIVE_NIGHTS_PRICE, stories } from "@/lib/content";
 
-export default function StoryIndexPage() {
+export default function StoryPickerPage() {
   const { unlocked, unlockReady } = useApp();
 
   return (
     <div className="space-y-5">
       <header>
-        <p className="text-sm text-moon-200/60">Bedtime story</p>
-        <h1 className="text-2xl font-bold text-glow-gold">{STORY_TITLE}</h1>
-        <p className="mt-1 text-sm text-moon-200/70">By {AUTHOR}</p>
-        <p className="mt-3 text-sm text-moon-200/80">
-          Ages 4–8 · Keep Luma dark until the finale · Small lights can fill a
-          whole night.
+        <p className="text-sm text-moon-200/60">Bedtime stories</p>
+        <h1 className="text-2xl font-bold text-glow-gold">Choose a story</h1>
+        <p className="mt-2 text-base text-moon-200/80">
+          Two cozy nights by {AUTHOR}. Chapter 1 is free to try.
         </p>
       </header>
 
       {!unlocked && unlockReady && <UnlockCTA />}
 
-      <ol className="space-y-3">
-        {chapters.map((chapter) => {
-          const open = !unlockReady || canAccessChapter(chapter, unlocked);
-          const art = getChapterArt(chapter.id);
+      <ul className="space-y-3">
+        {stories.map((story) => {
+          const freeCh = story.chapters.filter((c) => c.preview).length;
           return (
-            <li key={chapter.id}>
+            <li key={story.id}>
               <Link
-                href={`/story/${chapter.id}`}
-                className={`flex min-h-16 items-center gap-3 rounded-3xl border px-4 py-3 transition ${
-                  open
-                    ? "border-white/10 bg-night-800/70 hover:border-glow-gold/40"
-                    : "border-white/5 bg-night-900/50 opacity-80"
-                }`}
+                href={`/story/${story.id}`}
+                className="flex min-h-24 gap-3 rounded-3xl border border-white/10 bg-night-800/70 p-4 transition hover:border-glow-gold/40"
               >
-                {art ? (
-                  <ChapterHero
-                    src={art}
-                    alt=""
-                    thumb
-                    locked={!open}
-                  />
-                ) : (
-                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-glow-gold/15 text-sm font-bold text-glow-gold">
-                    {open ? chapter.number : "🔒"}
-                  </span>
-                )}
+                <span
+                  className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-glow-gold/15 text-3xl"
+                  aria-hidden
+                >
+                  {story.emoji}
+                </span>
                 <div className="min-w-0 flex-1">
-                  <p className="font-semibold text-moon-200">{chapter.title}</p>
-                  <p className="text-xs text-moon-200/55">
-                    {chapter.preview
-                      ? "Free sample"
-                      : open
-                        ? "Unlocked"
-                        : "Unlock Full Glow"}
+                  <p className="font-semibold text-glow-gold">{story.title}</p>
+                  <p className="mt-1 text-sm text-moon-200/80">{story.logline}</p>
+                  <p className="mt-2 text-xs text-moon-200/55">
+                    {story.chapters.length} chapters · {story.songs.length} songs
+                    · {freeCh} free sample
+                    {story.packName
+                      ? ` · or ${story.packName} ${story.packPrice ?? HIVE_NIGHTS_PRICE}`
+                      : ""}
                   </p>
                 </div>
-                <span className="text-glow-gold/70" aria-hidden>
+                <span className="self-center text-glow-gold/70" aria-hidden>
                   →
                 </span>
               </Link>
             </li>
           );
         })}
-      </ol>
+      </ul>
+
+      <p className="text-center text-xs text-moon-200/45">
+        Full Glow unlocks both stories. {HIVE_NIGHTS_PACK} ({HIVE_NIGHTS_PRICE})
+        is a suggested Honeybee pack for later Stripe — not wired yet.
+      </p>
     </div>
   );
 }
