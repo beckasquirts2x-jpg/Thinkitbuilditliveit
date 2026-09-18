@@ -6,42 +6,52 @@ import { AudioPlayer } from "@/components/AudioPlayer";
 import { ChapterHero } from "@/components/ChapterHero";
 import { FavoriteButton } from "@/components/FavoriteButton";
 import { LockedPreview } from "@/components/LockedPreview";
+import { StoryChapterList } from "@/components/StoryChapterList";
 import { useApp } from "@/components/AppProviders";
 import { getChapterArt } from "@/lib/art";
 import {
-  chapters,
   getChapter,
+  getStory,
+  getStoryForChapter,
   canAccessChapter,
-  STORY_TITLE,
 } from "@/lib/content";
 
-export default function ChapterPage() {
+export default function StoryOrChapterPage() {
   const params = useParams();
-  const chapterId = String(params.chapterId ?? "");
-  const chapter = getChapter(chapterId);
-  const { unlocked, unlockReady } = useApp();
-  const art = getChapterArt(chapterId);
+  const slug = String(params.chapterId ?? "");
+  const storyById = getStory(slug);
 
-  if (!chapter) {
+  if (storyById) {
+    return <StoryChapterList story={storyById} />;
+  }
+
+  const chapter = getChapter(slug);
+  const parentStory = chapter ? getStoryForChapter(chapter.id) : undefined;
+  const { unlocked, unlockReady } = useApp();
+  const art = getChapterArt(slug);
+
+  if (!chapter || !parentStory) {
     return (
       <div className="space-y-4 text-center">
         <p className="text-glow-gold">Chapter not found.</p>
         <Link href="/story" className="text-moon-200 underline">
-          Back to story
+          Back to stories
         </Link>
       </div>
     );
   }
 
   const open = !unlockReady || canAccessChapter(chapter, unlocked);
-  const idx = chapters.findIndex((c) => c.id === chapter.id);
-  const prev = idx > 0 ? chapters[idx - 1] : null;
-  const next = idx < chapters.length - 1 ? chapters[idx + 1] : null;
+  const storyChapters = parentStory.chapters;
+  const idx = storyChapters.findIndex((c) => c.id === chapter.id);
+  const prev = idx > 0 ? storyChapters[idx - 1] : null;
+  const next = idx < storyChapters.length - 1 ? storyChapters[idx + 1] : null;
+  const backHref = `/story/${parentStory.id}`;
 
   if (!open) {
     return (
       <div className="space-y-4">
-        <Link href="/story" className="text-sm text-glow-gold/80">
+        <Link href={backHref} className="text-sm text-glow-gold/80">
           ← All chapters
         </Link>
         <h1 className="text-2xl font-bold text-glow-gold">
@@ -63,8 +73,8 @@ export default function ChapterPage() {
     <article className="space-y-5">
       <div className="flex items-start justify-between gap-3">
         <div>
-          <Link href="/story" className="text-sm text-glow-gold/80">
-            ← {STORY_TITLE}
+          <Link href={backHref} className="text-sm text-glow-gold/80">
+            ← {parentStory.title}
           </Link>
           <p className="mt-2 text-xs uppercase tracking-wide text-moon-200/50">
             Chapter {chapter.number}

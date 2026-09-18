@@ -3,11 +3,15 @@ import Link from "next/link";
 import { TipJar } from "@/components/TipJar";
 import { UnlockCTA } from "@/components/UnlockCTA";
 import { HOME_HERO } from "@/lib/art";
-import { APP_NAME, AUTHOR, STORY_TITLE, chapters, songs } from "@/lib/content";
+import { APP_NAME, AUTHOR, stories, songs } from "@/lib/content";
 
 export default function HomePage() {
   const freeSongs = songs.filter((s) => s.preview).length;
-  const freeChapters = chapters.filter((c) => c.preview).length;
+  const freeChapters = stories.reduce(
+    (n, s) => n + s.chapters.filter((c) => c.preview).length,
+    0
+  );
+  const storyCount = stories.length;
 
   return (
     <div className="space-y-6">
@@ -32,9 +36,11 @@ export default function HomePage() {
           </div>
         </div>
         <p className="px-6 py-4 text-base text-moon-200">
-          Follow tiny firefly <strong className="text-glow-soft">Pip</strong> as
-          she helps dark moon <strong className="text-glow-soft">Luma</strong>{" "}
-          remember how to shine.
+          Two bedtime adventures: firefly{" "}
+          <strong className="text-glow-soft">Pip</strong> helping moon{" "}
+          <strong className="text-glow-soft">Luma</strong>, and honeybee{" "}
+          <strong className="text-glow-soft">Buzz</strong> learning a soft alarm
+          for the hive.
         </p>
       </section>
 
@@ -46,7 +52,7 @@ export default function HomePage() {
           <span className="text-3xl">📖</span>
           <span className="mt-2 font-semibold text-glow-gold">Story</span>
           <span className="mt-1 text-xs text-moon-200/60">
-            {STORY_TITLE}
+            {storyCount} stories
           </span>
         </Link>
         <Link
@@ -55,7 +61,9 @@ export default function HomePage() {
         >
           <span className="text-3xl">🎵</span>
           <span className="mt-2 font-semibold text-glow-gold">Songs</span>
-          <span className="mt-1 text-xs text-moon-200/60">6 lullabies</span>
+          <span className="mt-1 text-xs text-moon-200/60">
+            {songs.length} lullabies
+          </span>
         </Link>
         <Link
           href="/timer"

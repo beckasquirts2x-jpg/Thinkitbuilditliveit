@@ -16,12 +16,44 @@ export type Song = {
   placement: string;
 };
 
+export type Story = {
+  id: string;
+  title: string;
+  logline: string;
+  cast: string[];
+  lesson: string;
+  /** Story-specific art/direction note shown on chapter list (Moon only for Luma-dark). */
+  directorNote?: string;
+  /** Suggested pack price label for this story (Stripe later). */
+  packName?: string;
+  packPrice?: string;
+  emoji: string;
+  chapters: Chapter[];
+  songs: Song[];
+};
+
 export const APP_NAME = "Little Glow Bedtime";
 export const AUTHOR = "Hattie Watson";
 export const UNLOCK_PRICE = "$3.99";
+/** Suggested Honeybee story-pack price (UI copy only — no Stripe keys). */
+export const HIVE_NIGHTS_PRICE = "$1.99";
+export const HIVE_NIGHTS_PACK = "Hive Nights";
+
+/** @deprecated Prefer stories[0].title — kept for older imports */
 export const STORY_TITLE = "The Moon Forgot Its Glow";
 
-export const chapters: Chapter[] = [
+export const stories: Story[] = [
+  {
+    id: "moon-forgot",
+    title: "The Moon Forgot Its Glow",
+    logline:
+      "Tiny firefly Pip helps dark moon Luma remember how to shine.",
+    cast: ["Pip", "Rook", "Luma", "Owl", "Sun", "Phob", "Deim"],
+    lesson: "Even a little light, if you share it, can fill a whole night.",
+    directorNote:
+      "Ages 4–8 · Keep Luma dark until the finale · Small lights can fill a whole night.",
+    emoji: "🌙",
+    chapters: [
   {
     id: "night-went-gray",
     number: 1,
@@ -195,9 +227,8 @@ export const chapters: Chapter[] = [
       "“Even a little light… if you share it… can fill a whole night.”",
     ],
   },
-];
-
-export const songs: Song[] = [
+],
+    songs: [
   {
     id: "little-fireflys-song",
     number: 1,
@@ -484,14 +515,339 @@ export const songs: Song[] = [
     ],
     placement: "Opening theme or end-credits; montage under Pip’s tour of lights.",
   },
+],
+  },
+  {
+    id: "honeybee-soft-alarm",
+    title: "Honeybee’s Soft Alarm",
+    logline:
+      "Buzz, a young honeybee who only knows loud, learns a lullaby buzz so the hive can sleep before dawn work.",
+    cast: [
+      "Buzz",
+      "Queen Amber",
+      "Nurse Nia",
+      "Drone Drowsy",
+      "Night Crickets",
+      "Sol the sunflower",
+    ],
+    lesson:
+      "Different times need different volumes. Soft isn’t small — soft is kind.",
+    packName: HIVE_NIGHTS_PACK,
+    packPrice: HIVE_NIGHTS_PRICE,
+    emoji: "🐝",
+    chapters: [
+  {
+    id: "too-loud-for-moonlight",
+    number: 1,
+    title: "Too Loud for Moonlight",
+    preview: true,
+    body: [
+      "Midnight silvered the hive. Most bees dreamed of nectar and dawn.",
+      "Buzz did not. Buzz practiced his morning alarm — a proud, buzzing BRRRR that shook the honeycomb walls.",
+      "Larvae stirred. Nurse bees covered their ears. Even the wax seemed to wince.",
+      "Queen Amber appeared in the glow of a night-lantern flower. Her crown tipped. Her smile was tired and kind.",
+      "“Buzz,” she said softly, “dawn needs a wake-up. Night needs a whisper.”",
+      "Buzz’s wings drooped. “But loud is how I help.”",
+      "“Loud is one kind of help,” Queen Amber answered. “Tonight, the hive needs another.”",
+    ],
+  },
+  {
+    id: "the-crown-and-the-earmuffs",
+    number: 2,
+    title: "The Crown and the Earmuffs",
+    preview: false,
+    body: [
+      "Queen Amber held up a pair of fluffy pollen earmuffs — a joke gift from last Festival of Hum.",
+      "“If midnight alarms keep coming,” she teased, “I may trade my crown for these.”",
+      "Buzz’s cheeks warmed. He had not meant to be a midnight storm.",
+      "“I’ll learn soft,” he promised. “Softer than proud. Soft enough for sleep.”",
+      "The Queen touched his tiny shoulder. “Soft isn’t small, Buzz. Soft is kind.”",
+      "Outside, moonflowers nodded as if they agreed.",
+    ],
+  },
+  {
+    id: "nurse-nias-lesson",
+    number: 3,
+    title: "Nurse Nia’s Lesson",
+    preview: false,
+    body: [
+      "Nurse Nia rocked a cradle cell with a hum so gentle it felt like warm honey.",
+      "“Listen,” she whispered. “Not with your loudest wing — with your quietest heart.”",
+      "Buzz tried. His buzz still jumped like a startled cricket.",
+      "Nia smiled. “Softer than proud. Softer than busy. Softer than ‘look at me.’”",
+      "Buzz breathed in pollen-sweet air. He buzzed again — a little smaller, a little kinder.",
+      "A baby bee sighed and slept. Buzz’s eyes went wide. “I… did that?”",
+      "“You began,” Nia said. “Lullabies love beginners.”",
+    ],
+  },
+  {
+    id: "drone-drowsys-nap-map",
+    number: 4,
+    title: "Drone Drowsy’s Nap Map",
+    preview: false,
+    body: [
+      "Drone Drowsy unrolled a crumpled leaf map of Quiet Places: the north wax nook, the clover-shadow ledge, the soft corner behind the honeycomb stairs.",
+      "“Practice here,” he yawned. “If you wake me… try half a notch quieter.”",
+      "Buzz practiced. He almost floated. Then — oops — one note popped loud.",
+      "Drowsy sat up, blinked, and plopped straight back into a snore.",
+      "“Half a notch,” Buzz whispered to himself, and tried again.",
+      "This time the quiet held. Drowsy’s map fluttered like a sleepy flag of success.",
+    ],
+  },
+  {
+    id: "sol-the-sunflower",
+    number: 5,
+    title: "Sol the Sunflower",
+    preview: false,
+    body: [
+      "In the night garden stood Sol the sunflower, tall as a dream and patient as dusk.",
+      "“Buzz me your practice,” Sol said. “My petals are honest listeners.”",
+      "Buzz buzzed loud. Sol’s petals shivered.",
+      "Buzz buzzed softer. The petals grew still — like a pond after rain.",
+      "“There,” Sol murmured. “That note doesn’t push. It invites.”",
+      "Buzz found his first true soft note and held it like a small golden coin.",
+      "Somewhere nearby, a cricket paused to listen.",
+    ],
+  },
+  {
+    id: "cricket-choir",
+    number: 6,
+    title: "Cricket Choir",
+    preview: false,
+    body: [
+      "The Night Crickets tuned their tiny legs under the moon.",
+      "“Follow, don’t lead,” chirped the eldest. “Harmony is bigger than volume.”",
+      "Buzz wanted to shine. His wings itched to be first and loudest.",
+      "Then he remembered Sol’s still petals. He slipped his soft note into their song — not on top, beside.",
+      "The choir glowed warmer. The night felt held.",
+      "“See?” whispered a cricket. “You didn’t disappear. You belonged.”",
+    ],
+  },
+  {
+    id: "the-almost-lullaby",
+    number: 7,
+    title: "The Almost-Lullaby",
+    preview: false,
+    body: [
+      "In the nursery, Buzz tried his almost-lullaby.",
+      "Most little bees settled. One fidgeted. One smiled in sleep. One asked for “one more soft.”",
+      "Buzz’s voice wobbled. “It’s not perfect.”",
+      "Nurse Nia shook her head. “Almost is how lullabies begin.”",
+      "Buzz hummed the soft note again — petal-still, cricket-kind.",
+      "The fidgety bee curled up. The hive exhaled.",
+    ],
+  },
+  {
+    id: "what-soft-is-for",
+    number: 8,
+    title: "What Soft Is For",
+    preview: false,
+    body: [
+      "Morning Buzz and Night Buzz sat inside the same small bee.",
+      "Morning Buzz loved bright calls — rise, stretch, fly to the flowers!",
+      "Night Buzz was learning to protect rest — hush, hold, keep the dark gentle.",
+      "“Two jobs,” Buzz realized. “One bee.”",
+      "Queen Amber nodded from her doorway. “Different times need different volumes.”",
+      "Buzz tucked that truth under his wings like a spare map.",
+    ],
+  },
+  {
+    id: "soft-alarm",
+    number: 9,
+    title: "Soft Alarm",
+    preview: false,
+    body: [
+      "Night deepened. The hive needed sleep before dawn work.",
+      "Buzz stood in the heart of the comb and offered his full lullaby buzz — soft as moon on wax, steady as Nia’s cradle hum, kind as Sol’s still petals.",
+      "One by one, bees drifted into honey-colored dreams.",
+      "Queen Amber’s earmuffs stayed unused on their hook.",
+      "“There you are,” she whispered. “Soft alarm.”",
+      "Buzz glowed — not loud, not tiny — just right.",
+    ],
+  },
+  {
+    id: "dawn-on-purpose",
+    number: 10,
+    title: "Dawn, On Purpose",
+    preview: false,
+    body: [
+      "Dawn painted the hive gold. Now the garden needed waking.",
+      "Buzz chose his bright morning call on purpose — clear, cheerful, kind.",
+      "Bees stretched. Wings hummed. The day began.",
+      "Queen Amber smiled. “You didn’t lose your loud. You learned when to keep it.”",
+      "Buzz looked at the sleeping moon one last time and whispered to us:",
+      "“Some nights need a soft alarm… so tomorrow can sing.”",
+    ],
+  },
+],
+    songs: [
+  {
+    id: "buzz-loud",
+    number: 1,
+    title: "Buzz Loud",
+    subtitle: "Comic → soft — Buzz learns volume has a bedtime",
+    preview: true,
+    lyrics: [
+      "BUZZ LOUD! BUZZ LOUD!",
+      "I shake the honeycomb walls!",
+      "Midnight practice, morning proud—",
+      "I never learned the quiet calls!",
+      "",
+      "(spoken, softer)",
+      "Queen says dawn needs wake-up…",
+      "Night needs whisper…",
+      "",
+      "Verse 2 — a little softer",
+      "Buzz… loud…? maybe medium…",
+      "Earmuffs waiting on the crown.",
+      "I can help without the thunder—",
+      "I can turn my volume down.",
+      "",
+      "Verse 3 — cradle-soft",
+      "Softer than proud,",
+      "Softer than busy,",
+      "Softer than “look at me.”",
+      "Half a notch… half a notch…",
+      "Quiet places set me free.",
+      "",
+      "Chorus — bridge to Soft Alarm",
+      "I will glow… I mean, I will hum…",
+      "Not to startle, just to keep",
+      "Every tiny dreamer safe",
+      "While the hive is deep in sleep.",
+      "Buzz loud when morning rings—",
+      "Buzz soft when moonlight sings.",
+      "Different times, different wings.",
+      "",
+      "Final hush",
+      "Buzz… soft…",
+      "Buzz… soft…",
+      "I’m learning when.",
+    ],
+    placement: "Ch 1–2 comic loud; Ch 3–4 softening; final chorus bridges into Soft Alarm.",
+  },
+  {
+    id: "petal-still",
+    number: 2,
+    title: "Petal Still",
+    subtitle: "Sol the sunflower teaches honest listening",
+    preview: false,
+    lyrics: [
+      "Tall Sol, sunflower friend,",
+      "Petals open, night wind thin.",
+      "“Buzz me true,” the flower said,",
+      "“My petals tell you what’s within.”",
+      "",
+      "Loud note — shiver, shiver,",
+      "Petals tremble, can’t stay still.",
+      "Soft note — quiet river,",
+      "Petals listening on the hill.",
+      "",
+      "Chorus",
+      "Petal still, petal still,",
+      "That’s the volume kindness knows.",
+      "Not a push, an invitation—",
+      "That’s the way a soft note grows.",
+      "Petal still, petal still,",
+      "Hold the gold without the spill.",
+      "",
+      "Bridge",
+      "First true soft note in my chest,",
+      "Like a coin of gentle light.",
+      "Crickets pause to hear it rest…",
+      "I don’t have to win the night.",
+      "",
+      "Chorus",
+      "Petal still, petal still,",
+      "That’s the volume kindness knows.",
+      "Not a push, an invitation—",
+      "That’s the way a soft note grows.",
+      "",
+      "Soft reprise",
+      "Petal still…",
+      "Almost lullaby…",
+      "Petal still.",
+    ],
+    placement: "Chapter 5 (Sol); soft reprise in Chapter 7 (Almost-Lullaby).",
+  },
+  {
+    id: "soft-alarm-song",
+    number: 3,
+    title: "Soft Alarm",
+    subtitle: "The lullaby buzz that lets the hive sleep",
+    preview: false,
+    lyrics: [
+      "Soft alarm, soft alarm,",
+      "Not a shout across the comb—",
+      "Just a hum that holds the dark",
+      "And tells the tired hearts: you’re home.",
+      "",
+      "Verse — soft (Ch 5–6)",
+      "Follow, don’t lead the choir.",
+      "Harmony is more than loud.",
+      "Slip your note in beside them—",
+      "Belonging is allowed.",
+      "",
+      "Chorus — full (Ch 9)",
+      "Soft alarm, soft alarm,",
+      "Earmuffs unused on the hook.",
+      "Queen is smiling, nursery dreaming,",
+      "Buzz has learned another book:",
+      "Morning voice and midnight grace—",
+      "Two jobs living in one face.",
+      "Soft alarm, soft alarm…",
+      "Kindness keeps the sleeping place.",
+      "",
+      "Bridge",
+      "Soft isn’t small.",
+      "Soft is kind.",
+      "Different times need different volumes.",
+      "I keep my loud for dawn to find.",
+      "",
+      "Tiny reprise (Ch 10)",
+      "Dawn on purpose — bright and clear.",
+      "I didn’t lose my loud, my dear.",
+      "Some nights need a soft alarm…",
+      "So tomorrow can sing from here.",
+      "",
+      "Soft alarm…",
+      "Soft alarm…",
+      "Good night, hive.",
+    ],
+    placement: "Soft verse Ch 5–6; full song Ch 9; tiny reprise Ch 10 closer.",
+  },
+],
+  },
 ];
 
+/** Moon story chapters — backward-compatible default for older routes */
+export const chapters: Chapter[] = stories[0].chapters;
+
+/** All songs across stories (Moon first, then Honeybee) */
+export const songs: Song[] = stories.flatMap((s) => s.songs);
+
+export function getStory(id: string) {
+  return stories.find((s) => s.id === id);
+}
+
 export function getChapter(id: string) {
-  return chapters.find((c) => c.id === id);
+  for (const story of stories) {
+    const chapter = story.chapters.find((c) => c.id === id);
+    if (chapter) return chapter;
+  }
+  return undefined;
+}
+
+export function getStoryForChapter(chapterId: string) {
+  return stories.find((s) => s.chapters.some((c) => c.id === chapterId));
 }
 
 export function getSong(id: string) {
   return songs.find((s) => s.id === id);
+}
+
+export function getStoryForSong(songId: string) {
+  return stories.find((s) => s.songs.some((song) => song.id === songId));
 }
 
 export function canAccessChapter(chapter: Chapter, unlocked: boolean) {
