@@ -1,6 +1,8 @@
+import Image from "next/image";
 import Link from "next/link";
 import { TipJar } from "@/components/TipJar";
 import { UnlockCTA } from "@/components/UnlockCTA";
+import { HOME_HERO } from "@/lib/art";
 import { APP_NAME, AUTHOR, STORY_TITLE, chapters, songs } from "@/lib/content";
 
 export default function HomePage() {
@@ -9,17 +11,27 @@ export default function HomePage() {
 
   return (
     <div className="space-y-6">
-      <section className="rounded-3xl border border-glow-gold/25 bg-night-900/70 p-6 text-center shadow-glow">
-        <p className="text-5xl" aria-hidden>
-          🌙✨
-        </p>
-        <h1 className="mt-3 text-3xl font-bold tracking-tight text-glow-gold">
-          {APP_NAME}
-        </h1>
-        <p className="mt-2 text-sm text-moon-200/80">
-          Cozy bedtime stories & lullabies by {AUTHOR}
-        </p>
-        <p className="mt-4 text-base text-moon-200">
+      <section className="overflow-hidden rounded-3xl border border-glow-gold/25 bg-night-900/70 text-center shadow-glow">
+        <div className="relative aspect-[16/10] w-full">
+          <Image
+            src={HOME_HERO}
+            alt="Pip and friends as the moon’s glow returns"
+            fill
+            priority
+            sizes="(max-width: 512px) 100vw, 512px"
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-night-950/90 via-night-950/20 to-transparent" />
+          <div className="absolute inset-x-0 bottom-0 p-5">
+            <h1 className="text-3xl font-bold tracking-tight text-glow-gold drop-shadow">
+              {APP_NAME}
+            </h1>
+            <p className="mt-1 text-sm text-moon-200/90">
+              Cozy bedtime stories & lullabies by {AUTHOR}
+            </p>
+          </div>
+        </div>
+        <p className="px-6 py-4 text-base text-moon-200">
           Follow tiny firefly <strong className="text-glow-soft">Pip</strong> as
           she helps dark moon <strong className="text-glow-soft">Luma</strong>{" "}
           remember how to shine.

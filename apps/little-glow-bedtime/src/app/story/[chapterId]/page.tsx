@@ -2,10 +2,12 @@
 
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import { AudioPlaceholder } from "@/components/AudioPlaceholder";
+import { AudioPlayer } from "@/components/AudioPlayer";
+import { ChapterHero } from "@/components/ChapterHero";
 import { FavoriteButton } from "@/components/FavoriteButton";
 import { LockedPreview } from "@/components/LockedPreview";
 import { useApp } from "@/components/AppProviders";
+import { getChapterArt } from "@/lib/art";
 import {
   chapters,
   getChapter,
@@ -18,6 +20,7 @@ export default function ChapterPage() {
   const chapterId = String(params.chapterId ?? "");
   const chapter = getChapter(chapterId);
   const { unlocked, unlockReady } = useApp();
+  const art = getChapterArt(chapterId);
 
   if (!chapter) {
     return (
@@ -44,6 +47,13 @@ export default function ChapterPage() {
         <h1 className="text-2xl font-bold text-glow-gold">
           Chapter {chapter.number}: {chapter.title}
         </h1>
+        {art && (
+          <ChapterHero
+            src={art}
+            alt={`Illustration for ${chapter.title}`}
+            locked
+          />
+        )}
         <LockedPreview kind="chapter" />
       </div>
     );
@@ -64,15 +74,22 @@ export default function ChapterPage() {
         <FavoriteButton type="chapter" id={chapter.id} />
       </div>
 
+      {art && (
+        <ChapterHero src={art} alt={`Illustration for ${chapter.title}`} />
+      )}
+
       <div className="prose-bedtime rounded-3xl border border-white/10 bg-night-900/60 p-5 text-moon-200">
         {chapter.body.map((para, i) => (
           <p key={i}>{para}</p>
         ))}
       </div>
 
-      {unlocked && (
-        <AudioPlaceholder title={`${chapter.title} narration`} />
-      )}
+      <AudioPlayer
+        id={chapter.id}
+        title={`${chapter.title} narration`}
+        kind="story"
+        speakText={chapter.body.join(" ")}
+      />
 
       <nav className="flex gap-3">
         {prev ? (

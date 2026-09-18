@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import { AudioPlaceholder } from "@/components/AudioPlaceholder";
+import { AudioPlayer } from "@/components/AudioPlayer";
 import { FavoriteButton } from "@/components/FavoriteButton";
 import { LockedPreview } from "@/components/LockedPreview";
 import { useApp } from "@/components/AppProviders";
@@ -56,7 +56,7 @@ export default function SongPage() {
         <FavoriteButton type="song" id={song.id} />
       </div>
 
-      <AudioPlaceholder title={song.title} />
+      <AudioPlayer id={song.id} title={song.title} kind="song" />
 
       <div className="rounded-3xl border border-white/10 bg-night-900/60 p-5">
         <p className="mb-4 text-xs font-medium uppercase tracking-wide text-glow-gold/70">
@@ -68,12 +68,12 @@ export default function SongPage() {
             const isLabel =
               line === "Chorus" ||
               line === "Final chorus" ||
-              line.endsWith(":") &&
+              (line.endsWith(":") &&
                 (line.startsWith("Owl") ||
                   line.startsWith("Rabbit") ||
                   line.startsWith("Deer") ||
                   line.startsWith("Frog") ||
-                  line.startsWith("All the"));
+                  line.startsWith("All the")));
             return (
               <p
                 key={i}
