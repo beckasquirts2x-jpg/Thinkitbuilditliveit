@@ -1,8 +1,10 @@
 "use client";
 
 import Link from "next/link";
+import { ChapterHero } from "@/components/ChapterHero";
 import { UnlockCTA } from "@/components/UnlockCTA";
 import { useApp } from "@/components/AppProviders";
+import { getChapterArt } from "@/lib/art";
 import { STORY_TITLE, AUTHOR, chapters, canAccessChapter } from "@/lib/content";
 
 export default function StoryIndexPage() {
@@ -25,6 +27,7 @@ export default function StoryIndexPage() {
       <ol className="space-y-3">
         {chapters.map((chapter) => {
           const open = !unlockReady || canAccessChapter(chapter, unlocked);
+          const art = getChapterArt(chapter.id);
           return (
             <li key={chapter.id}>
               <Link
@@ -35,9 +38,18 @@ export default function StoryIndexPage() {
                     : "border-white/5 bg-night-900/50 opacity-80"
                 }`}
               >
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-glow-gold/15 text-sm font-bold text-glow-gold">
-                  {open ? chapter.number : "🔒"}
-                </span>
+                {art ? (
+                  <ChapterHero
+                    src={art}
+                    alt=""
+                    thumb
+                    locked={!open}
+                  />
+                ) : (
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-glow-gold/15 text-sm font-bold text-glow-gold">
+                    {open ? chapter.number : "🔒"}
+                  </span>
+                )}
                 <div className="min-w-0 flex-1">
                   <p className="font-semibold text-moon-200">{chapter.title}</p>
                   <p className="text-xs text-moon-200/55">

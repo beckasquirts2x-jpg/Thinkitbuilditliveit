@@ -1,9 +1,16 @@
 "use client";
 
+import { useEffect } from "react";
 import { useApp } from "./AppProviders";
+import { stopAllAudio } from "@/lib/audioControl";
 
 export function SleepyOverlay() {
   const { sleepy, dismissSleepy } = useApp();
+
+  useEffect(() => {
+    if (sleepy) stopAllAudio();
+  }, [sleepy]);
+
   if (!sleepy) return null;
 
   return (
