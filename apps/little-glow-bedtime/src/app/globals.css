@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+:root {
+  --background: #070b18;
+  --foreground: #e8eefc;
+  --night-950: #050816;
+  --night-900: #0b1224;
+  --night-800: #121a33;
+  --moon-200: #c9d4f0;
+  --glow-gold: #f0d27a;
+  --glow-soft: #ffe9a8;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-night-950: var(--night-950);
+  --color-night-900: var(--night-900);
+  --color-night-800: var(--night-800);
+  --color-moon-200: var(--moon-200);
+  --color-glow-gold: var(--glow-gold);
+  --color-glow-soft: var(--glow-soft);
+  --font-sans: var(--font-geist-sans);
+  --shadow-glow: 0 0 24px rgba(240, 210, 122, 0.25);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background:
+    radial-gradient(ellipse at top, #152045 0%, transparent 55%),
+    radial-gradient(ellipse at bottom, #1a1430 0%, transparent 50%),
+    var(--background);
+  color: var(--foreground);
+  min-height: 100dvh;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+}
+
+::selection {
+  background: rgba(240, 210, 122, 0.35);
+}
+
+.prose-bedtime p {
+  margin-bottom: 1rem;
+  line-height: 1.7;
+  font-size: 1.125rem;
+}
+
+.lyric-line {
+  line-height: 1.65;
+}
+
+.lyric-line.chorus-label {
+  margin-top: 0.75rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--glow-gold);
+  opacity: 0.85;
+}
