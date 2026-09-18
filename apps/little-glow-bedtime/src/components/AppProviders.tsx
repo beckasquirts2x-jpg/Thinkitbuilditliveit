@@ -9,6 +9,7 @@ import {
 import { useUnlock } from "@/hooks/useUnlock";
 import { useFavorites } from "@/hooks/useFavorites";
 import { useSleepTimer, type TimerMinutes } from "@/hooks/useSleepTimer";
+import { useBedtimePrefs } from "@/hooks/useBedtimePrefs";
 import type { FavoriteItem } from "@/lib/storage";
 
 type AppContextValue = {
@@ -27,6 +28,13 @@ type AppContextValue = {
   startTimer: (m: TimerMinutes) => void;
   clearTimer: () => void;
   dismissSleepy: () => void;
+  autoAdvance: boolean;
+  sleepyFont: boolean;
+  prefsReady: boolean;
+  setAutoAdvance: (v: boolean) => void;
+  setSleepyFont: (v: boolean) => void;
+  toggleAutoAdvance: () => void;
+  toggleSleepyFont: () => void;
 };
 
 const AppContext = createContext<AppContextValue | null>(null);
@@ -35,6 +43,7 @@ export function AppProviders({ children }: { children: ReactNode }) {
   const unlockState = useUnlock();
   const favState = useFavorites();
   const timer = useSleepTimer();
+  const prefs = useBedtimePrefs();
 
   const value = useMemo<AppContextValue>(
     () => ({
@@ -53,8 +62,15 @@ export function AppProviders({ children }: { children: ReactNode }) {
       startTimer: timer.start,
       clearTimer: timer.clear,
       dismissSleepy: timer.dismissSleepy,
+      autoAdvance: prefs.autoAdvance,
+      sleepyFont: prefs.sleepyFont,
+      prefsReady: prefs.ready,
+      setAutoAdvance: prefs.setAutoAdvance,
+      setSleepyFont: prefs.setSleepyFont,
+      toggleAutoAdvance: prefs.toggleAutoAdvance,
+      toggleSleepyFont: prefs.toggleSleepyFont,
     }),
-    [unlockState, favState, timer]
+    [unlockState, favState, timer, prefs]
   );
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

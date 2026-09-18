@@ -11,13 +11,14 @@ export {
 import type { Chapter, Song } from "./content-types";
 import { moonStory } from "./content-moon";
 import { honeybeeStory } from "./content-honeybee";
+import { bananaStory } from "./content-banana";
 
-export const stories = [moonStory, honeybeeStory];
+export const stories = [moonStory, honeybeeStory, bananaStory];
 
 /** Moon story chapters — backward-compatible default for older routes */
 export const chapters: Chapter[] = stories[0].chapters;
 
-/** All songs across stories (Moon first, then Honeybee) */
+/** All songs across stories (Moon, Honeybee, Banana Boy) */
 export const songs: Song[] = stories.flatMap((s) => s.songs);
 
 export function getStory(id: string) {

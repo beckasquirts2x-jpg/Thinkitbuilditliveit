@@ -14,7 +14,7 @@ export default function StoryPickerPage() {
         <p className="text-sm text-moon-200/60">Bedtime stories</p>
         <h1 className="text-2xl font-bold text-glow-gold">Choose a story</h1>
         <p className="mt-2 text-base text-moon-200/80">
-          Two cozy nights by {AUTHOR}. Chapter 1 is free to try.
+          Cozy nights by {AUTHOR}. Chapter 1 of each story is free to try.
         </p>
       </header>
 
@@ -56,7 +56,7 @@ export default function StoryPickerPage() {
       </ul>
 
       <p className="text-center text-xs text-moon-200/45">
-        Full Glow unlocks both stories. {HIVE_NIGHTS_PACK} ({HIVE_NIGHTS_PRICE})
+        Full Glow unlocks all stories. {HIVE_NIGHTS_PACK} ({HIVE_NIGHTS_PRICE})
         is a suggested Honeybee pack for later Stripe — not wired yet.
       </p>
     </div>
