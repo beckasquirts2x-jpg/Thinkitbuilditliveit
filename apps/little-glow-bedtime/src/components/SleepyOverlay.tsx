@@ -8,20 +8,20 @@ export function SleepyOverlay() {
   const { sleepy, dismissSleepy } = useApp();
 
   useEffect(() => {
-    if (sleepy) stopAllAudio();
+    if (sleepy) stopAllAudio({ fade: true });
   }, [sleepy]);
 
   if (!sleepy) return null;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-night-950/92 p-6 backdrop-blur-sm">
-      <div className="max-w-sm rounded-3xl border border-glow-gold/30 bg-night-900 p-8 text-center shadow-glow">
+      <div className="max-w-sm rounded-3xl border border-glow-gold/30 bg-night-900 p-8 text-center shadow-glow glow-soft">
         <p className="text-5xl" aria-hidden>
           😴
         </p>
         <h2 className="mt-4 text-2xl font-semibold text-glow-gold">Sleepy mode</h2>
         <p className="mt-2 text-moon-200/80">
-          Your sleep timer finished. Lights are dim. Sweet dreams, little glow.
+          Your sleep timer finished. Sounds faded out. Sweet dreams, little glow.
         </p>
         <button
           type="button"

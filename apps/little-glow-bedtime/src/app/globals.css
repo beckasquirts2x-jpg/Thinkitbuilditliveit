@@ -52,6 +52,12 @@ body {
   font-size: 1.125rem;
 }
 
+html.sleepy-font .prose-bedtime p,
+html.sleepy-font .lyric-line:not(.chorus-label) {
+  font-size: 1.35rem;
+  line-height: 1.85;
+}
+
 .lyric-line {
   line-height: 1.65;
 }
@@ -63,4 +69,50 @@ body {
   text-transform: uppercase;
   color: var(--glow-gold);
   opacity: 0.85;
+}
+
+/* Soft, calm glow — home hero, chapter art, accents */
+@keyframes soft-glow-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 18px rgba(240, 210, 122, 0.18);
+  }
+  50% {
+    box-shadow: 0 0 28px rgba(240, 210, 122, 0.32);
+  }
+}
+
+@keyframes soft-glow-ring {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 6px rgba(240, 210, 122, 0.2));
+  }
+  50% {
+    filter: drop-shadow(0 0 14px rgba(240, 210, 122, 0.35));
+  }
+}
+
+.glow-hero {
+  animation: soft-glow-pulse 6s ease-in-out infinite;
+}
+
+.glow-art {
+  animation: soft-glow-pulse 7s ease-in-out infinite;
+}
+
+.glow-soft {
+  animation: soft-glow-pulse 8s ease-in-out infinite;
+}
+
+.glow-accent {
+  animation: soft-glow-ring 5s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glow-hero,
+  .glow-art,
+  .glow-soft,
+  .glow-accent {
+    animation: none;
+  }
 }
