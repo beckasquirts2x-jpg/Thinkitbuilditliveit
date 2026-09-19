@@ -50,6 +50,11 @@ export const songArt: Record<string, string> = {
   "buzz-loud": "/art/12-idea-firefly-choir.png",
   "petal-still": "/art/13-idea-glow-blanket.png",
   "soft-alarm-song": "/art/25-finale-glow-returns.png",
+  "see-you-next-peel": "/art/banana-coconut-crackdown.png",
+  "playtocol": "/art/banana-pineapple-protocol.png",
+  "red-button-kindness": "/art/banana-blender-of-doom.png",
+  "slippery-dance": "/art/banana-space-peel.png",
+  "one-free-hug": "/art/banana-grocery-gauntlet.png",
 };
 
 /** Curated gallery for behind-the-story movie path */
