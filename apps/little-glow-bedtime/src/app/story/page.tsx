@@ -5,7 +5,11 @@ import { UnlockCTA } from "@/components/UnlockCTA";
 import { useApp } from "@/components/AppProviders";
 import { AUTHOR, HIVE_NIGHTS_PACK, HIVE_NIGHTS_PRICE, stories } from "@/lib/content";
 
-const NEW_STORY_IDS = new Set(["lumi-and-friends", "pip-flies-to-mars"]);
+const NEW_STORY_IDS = new Set([
+  "lilah-and-friends",
+  "lumi-and-friends",
+  "pip-flies-to-mars",
+]);
 
 export default function StoryPickerPage() {
   const { unlocked, unlockReady } = useApp();
@@ -46,6 +50,11 @@ export default function StoryPickerPage() {
                         New
                       </span>
                     )}
+                    {story.videoUrl && (
+                      <span className="rounded-full border border-glow-gold/40 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-glow-gold">
+                        Video
+                      </span>
+                    )}
                   </p>
                   <p className="mt-1 text-sm text-moon-200/80">{story.logline}</p>
                   {story.lesson && (
@@ -57,6 +66,7 @@ export default function StoryPickerPage() {
                     {story.chapters.length} chapters · {story.songs.length}{" "}
                     {story.songs.length === 1 ? "song" : "songs"}
                     · {freeCh} free sample
+                    {story.videoUrl ? " · read-along video" : ""}
                     {story.packName
                       ? ` · or ${story.packName} ${story.packPrice ?? HIVE_NIGHTS_PRICE}`
                       : ""}

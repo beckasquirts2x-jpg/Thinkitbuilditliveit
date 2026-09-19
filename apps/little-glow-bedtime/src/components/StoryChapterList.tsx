@@ -35,6 +35,15 @@ export function StoryChapterList({ story }: { story: Story }) {
         )}
       </header>
 
+      {story.videoUrl && (
+        <Link
+          href={`/story/${story.id}/watch`}
+          className="flex min-h-14 items-center justify-center gap-2 rounded-3xl border border-glow-gold/40 bg-glow-gold/15 px-4 text-base font-semibold text-glow-gold"
+        >
+          ▶ Watch read-along video
+        </Link>
+      )}
+
       {!unlocked && unlockReady && <UnlockCTA />}
 
       <ol className="space-y-3">
