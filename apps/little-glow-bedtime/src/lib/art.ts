@@ -21,6 +21,9 @@ export const chapterArt: Record<string, string> = {
   "blender-of-doom": "/art/banana-blender-of-doom.png",
   "space-peel": "/art/banana-space-peel.png",
   "grocery-gauntlet": "/art/banana-grocery-gauntlet.png",
+  "lift-from-the-forest": "/art/02-meet-rook.png",
+  "star-crumbs": "/art/22-pip-stars.png",
+  "red-dust-lullaby": "/art/24-pip-mars-moons.png",
 };
 
 /** Idea panels for the Pip Tries gallery (art 10–16) */
@@ -45,6 +48,8 @@ export const songArt: Record<string, string> = {
   "lumas-sad-song": "/art/06-dark-luma-tear.png",
   "when-the-fairy-gets-sad": "/art/08-sad-pip-alone.png",
   "stars-and-moon-carry-me": "/art/24-pip-mars-moons.png",
+  "stars-and-moon-carry-me-mars": "/art/24-pip-mars-moons.png",
+  "red-dust-goodnight": "/art/24-pip-mars-moons.png",
   "song-for-a-sad-moon": "/art/05-dark-luma-meeting.png",
   "things-that-glow": "/art/22-pip-stars.png",
   "buzz-loud": "/art/12-idea-firefly-choir.png",
