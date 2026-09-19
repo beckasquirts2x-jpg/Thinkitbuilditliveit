@@ -32,7 +32,7 @@ export default function HomePage() {
         <p className="px-6 py-4 text-base text-moon-200">
           Bedtime with firefly{" "}
           <strong className="text-glow-soft">Pip</strong>, fairy{" "}
-          <strong className="text-glow-soft">Lumi & Friends</strong>, honeybee{" "}
+          <strong className="text-glow-soft">Lilah & Friends</strong>, honeybee{" "}
           <strong className="text-glow-soft">Buzz</strong>,{" "}
           <strong className="text-glow-soft">Banana Boy</strong>, and a trip to{" "}
           <strong className="text-glow-soft">Mars</strong>.
