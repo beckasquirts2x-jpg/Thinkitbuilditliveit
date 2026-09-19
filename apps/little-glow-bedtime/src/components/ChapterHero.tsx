@@ -5,9 +5,7 @@ import Image from "next/image";
 type Props = {
   src: string;
   alt: string;
-  /** Smaller thumb for index lists */
   thumb?: boolean;
-  /** Dim/blur when chapter is locked */
   locked?: boolean;
   className?: string;
 };
@@ -19,8 +17,7 @@ export function ChapterHero({
   locked = false,
   className = "",
 }: Props) {
-  const unoptimized =
-    src.startsWith("data:") || src.endsWith(".svg") || src.endsWith(".jpg");
+  const raw = src.startsWith("data:") || src.endsWith(".svg");
 
   if (thumb) {
     return (
@@ -29,14 +26,18 @@ export function ChapterHero({
           locked ? "opacity-70" : ""
         } ${className}`}
       >
-        <Image
-          src={src}
-          alt={alt}
-          fill
-          sizes="56px"
-          unoptimized={unoptimized}
-          className={`object-cover ${locked ? "brightness-75 saturate-75" : ""}`}
-        />
+        {raw ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={src} alt={alt} className={`h-full w-full object-cover ${locked ? "brightness-75 saturate-75" : ""}`} />
+        ) : (
+          <Image
+            src={src}
+            alt={alt}
+            fill
+            sizes="56px"
+            className={`object-cover ${locked ? "brightness-75 saturate-75" : ""}`}
+          />
+        )}
         {locked && (
           <span className="absolute inset-0 flex items-center justify-center bg-night-950/35 text-sm">
             🔒
@@ -52,15 +53,23 @@ export function ChapterHero({
         locked ? "opacity-80" : ""
       } ${className}`}
     >
-      <Image
-        src={src}
-        alt={alt}
-        fill
-        sizes="(max-width: 512px) 100vw, 512px"
-        priority
-        unoptimized={unoptimized}
-        className={`object-cover ${locked ? "brightness-75 blur-[1px]" : ""}`}
-      />
+      {raw ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={src}
+          alt={alt}
+          className={`h-full w-full object-cover ${locked ? "brightness-75 blur-[1px]" : ""}`}
+        />
+      ) : (
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          sizes="(max-width: 512px) 100vw, 512px"
+          priority
+          className={`object-cover ${locked ? "brightness-75 blur-[1px]" : ""}`}
+        />
+      )}
     </div>
   );
 }
