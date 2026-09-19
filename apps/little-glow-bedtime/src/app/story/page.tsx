@@ -23,6 +23,7 @@ export default function StoryPickerPage() {
       <ul className="space-y-3">
         {stories.map((story) => {
           const freeCh = story.chapters.filter((c) => c.preview).length;
+          const isNew = story.id === "pip-flies-to-mars";
           return (
             <li key={story.id}>
               <Link
@@ -36,10 +37,23 @@ export default function StoryPickerPage() {
                   {story.emoji}
                 </span>
                 <div className="min-w-0 flex-1">
-                  <p className="font-semibold text-glow-gold">{story.title}</p>
+                  <p className="flex flex-wrap items-center gap-2 font-semibold text-glow-gold">
+                    {story.title}
+                    {isNew && (
+                      <span className="rounded-full bg-glow-gold px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-night-950">
+                        New
+                      </span>
+                    )}
+                  </p>
                   <p className="mt-1 text-sm text-moon-200/80">{story.logline}</p>
+                  {story.lesson && (
+                    <p className="mt-1 text-xs italic text-moon-200/50">
+                      {story.lesson}
+                    </p>
+                  )}
                   <p className="mt-2 text-xs text-moon-200/55">
-                    {story.chapters.length} chapters · {story.songs.length} songs
+                    {story.chapters.length} chapters · {story.songs.length}{" "}
+                    {story.songs.length === 1 ? "song" : "songs"}
                     · {freeCh} free sample
                     {story.packName
                       ? ` · or ${story.packName} ${story.packPrice ?? HIVE_NIGHTS_PRICE}`
