@@ -1,5 +1,6 @@
 import type { Story } from "./content-types";
 import { bananaChapters } from "./content-banana-chapters";
+import { bananaSongs } from "./content-banana-songs";
 
 export const bananaStory: Story = {
   id: "banana-boy",
@@ -19,5 +20,5 @@ export const bananaStory: Story = {
   packPrice: "$1.99",
   emoji: "🍌",
   chapters: bananaChapters,
-  songs: [],
+  songs: bananaSongs,
 };
