@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { TipJar } from "@/components/TipJar";
 import { UnlockCTA } from "@/components/UnlockCTA";
-import { SmileMoon } from "@/components/SmileMoon";
+import { GlowMark } from "@/components/GlowMark";
 import { APP_NAME, AUTHOR, stories } from "@/lib/content";
 
 export default function HomePage() {
@@ -17,19 +17,13 @@ export default function HomePage() {
 
   return (
     <div className="space-y-6">
-      <section className="glow-hero overflow-hidden rounded-3xl border border-glow-gold/25 bg-night-900/70 text-center shadow-glow">
-        <div className="relative aspect-[4/5] w-full bg-[#0B1F4A]">
-          <SmileMoon className="absolute inset-0 h-full w-full" />
-          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-night-950/95 via-night-950/40 to-transparent p-5">
-            <h1 className="text-3xl font-bold tracking-tight text-glow-gold drop-shadow">
-              {APP_NAME}
-            </h1>
-            <p className="mt-1 text-sm text-moon-200/90">
-              Cozy stories by {AUTHOR}
-            </p>
-          </div>
-        </div>
-        <p className="px-6 py-4 text-base text-moon-200">
+      <section className="glow-hero overflow-hidden rounded-3xl border border-glow-gold/25 bg-night-900/70 px-6 py-8 text-center shadow-glow">
+        <GlowMark className="mx-auto h-16 w-16" />
+        <h1 className="mt-4 text-3xl font-bold tracking-tight text-glow-gold drop-shadow">
+          {APP_NAME}
+        </h1>
+        <p className="mt-1 text-sm text-moon-200/90">Cozy stories by {AUTHOR}</p>
+        <p className="mt-4 text-base text-moon-200">
           Bedtime with firefly{" "}
           <strong className="text-glow-soft">Pip</strong>, fairy{" "}
           <strong className="text-glow-soft">Lilah & Friends</strong>, honeybee{" "}

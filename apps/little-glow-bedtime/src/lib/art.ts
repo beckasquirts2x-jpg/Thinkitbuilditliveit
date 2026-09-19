@@ -4,7 +4,6 @@ export const HOME_HERO = "/art/25-finale-glow-returns.png";
 export const OG_IMAGE = "/og-image.png";
 export const FINALE_ART = "/art/25-finale-glow-returns.png";
 
-/** Primary hero illustration per chapter id */
 export const chapterArt: Record<string, string> = {
   "night-went-gray": "/art/01-gray-night-pip.png",
   "rook-balloon-rocket": "/art/02-meet-rook.png",
@@ -24,14 +23,13 @@ export const chapterArt: Record<string, string> = {
   "lift-from-the-forest": "/art/02-meet-rook.png",
   "star-crumbs": "/art/22-pip-stars.png",
   "red-dust-lullaby": "/art/24-pip-mars-moons.png",
-  "hi-im-lumi": "/art/13-idea-glow-blanket.png",
-  "kind-hearts-circle": "/art/04-owl-sparkles.png",
-  "lake-of-new-places": "/art/14-idea-lantern-bounce.png",
-  "biggest-magic": "/art/13-idea-glow-blanket.png",
-  "treehouse-goodnight": "/art/25-finale-glow-returns.png",
+  "hi-im-lumi": "/art/lilah-01.svg",
+  "kind-hearts-circle": "/art/lilah-02.svg",
+  "lake-of-new-places": "/art/lilah-03.svg",
+  "biggest-magic": "/art/lilah-04.svg",
+  "treehouse-goodnight": "/art/lilah-05.svg",
 };
 
-/** Idea panels for the Pip Tries gallery (art 10–16) */
 export type IdeaPanel = {
   src: string;
   label: string;
@@ -47,7 +45,6 @@ export const pipTriesPanels: IdeaPanel[] = [
   { src: "/art/16-dark-luma-choir.png", label: "Choir light" },
 ];
 
-/** Song cover art mapped to existing illustrations */
 export const songArt: Record<string, string> = {
   "little-fireflys-song": "/art/01-gray-night-pip.png",
   "lumas-sad-song": "/art/06-dark-luma-tear.png",
@@ -65,11 +62,10 @@ export const songArt: Record<string, string> = {
   "red-button-kindness": "/art/banana-blender-of-doom.png",
   "slippery-dance": "/art/banana-space-peel.png",
   "one-free-hug": "/art/banana-grocery-gauntlet.png",
-  "hi-im-lumi-song": "/art/13-idea-glow-blanket.png",
-  "kindness-biggest-magic": "/art/04-owl-sparkles.png",
+  "hi-im-lumi-song": "/art/lilah-02.svg",
+  "kindness-biggest-magic": "/art/lilah-04.svg",
 };
 
-/** Curated gallery for behind-the-story movie path */
 export const behindTheStoryArt: { src: string; caption: string }[] = [
   { src: "/art/01-gray-night-pip.png", caption: "Opening — gray night, one small spark" },
   { src: "/art/02-meet-rook.png", caption: "Meet Rook — junkyard hope" },
