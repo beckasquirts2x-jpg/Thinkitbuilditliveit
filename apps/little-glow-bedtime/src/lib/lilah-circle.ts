@@ -1,1 +1,1 @@
-export { LILAH_LAKE as LILAH_CIRCLE } from "./lilah-lake";
+export { LILAH_WAVE as LILAH_CIRCLE } from "./lilah-wave";
