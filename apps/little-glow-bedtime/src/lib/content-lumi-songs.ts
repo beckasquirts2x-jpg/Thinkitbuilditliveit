@@ -16,7 +16,7 @@ export const lumiSongs: Song[] = [
       "Chorus",
       "Big adventures, kind hearts,",
       "A brighter world from little starts.",
-      "Foxy close and fireflies near—",
+      "Foxy close and friends right here—",
       "You are welcome. You are here.",
     ],
     placement: "Chapter 1 greeting; soft wave under the title card.",

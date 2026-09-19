@@ -24,9 +24,9 @@ export const chapterArt: Record<string, string> = {
   "lift-from-the-forest": "/art/02-meet-rook.png",
   "star-crumbs": "/art/22-pip-stars.png",
   "red-dust-lullaby": "/art/24-pip-mars-moons.png",
-  "hi-im-lumi": "/art/01-gray-night-pip.png",
-  "kind-hearts-circle": "/art/12-idea-firefly-choir.png",
-  "lake-of-new-places": "/art/23-pip-sun.png",
+  "hi-im-lumi": "/art/13-idea-glow-blanket.png",
+  "kind-hearts-circle": "/art/04-owl-sparkles.png",
+  "lake-of-new-places": "/art/14-idea-lantern-bounce.png",
   "biggest-magic": "/art/13-idea-glow-blanket.png",
   "treehouse-goodnight": "/art/25-finale-glow-returns.png",
 };
@@ -65,8 +65,8 @@ export const songArt: Record<string, string> = {
   "red-button-kindness": "/art/banana-blender-of-doom.png",
   "slippery-dance": "/art/banana-space-peel.png",
   "one-free-hug": "/art/banana-grocery-gauntlet.png",
-  "hi-im-lumi-song": "/art/01-gray-night-pip.png",
-  "kindness-biggest-magic": "/art/13-idea-glow-blanket.png",
+  "hi-im-lumi-song": "/art/13-idea-glow-blanket.png",
+  "kindness-biggest-magic": "/art/04-owl-sparkles.png",
 };
 
 /** Curated gallery for behind-the-story movie path */
