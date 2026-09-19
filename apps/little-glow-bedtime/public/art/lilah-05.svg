@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
+  <rect width="800" height="500" fill="#08172F"/>
+  <rect x="0" y="380" width="800" height="120" fill="#102616"/>
+  <ellipse cx="400" cy="300" rx="180" ry="20" fill="#1A3B22" opacity=".5"/>
+  <ellipse cx="400" cy="280" rx="22" ry="34" fill="#fff"/>
+  <circle cx="400" cy="228" r="18" fill="#F8D7C4"/>
+  <path d="M386 226 Q400 212 414 226" fill="#E11D2E"/>
+  <path d="M400 212 Q418 218 416 234" fill="#F4F1EA"/>
+  <ellipse cx="250" cy="400" rx="50" ry="24" fill="#3D6EDB"/>
+  <ellipse cx="150" cy="420" rx="40" ry="20" fill="#E06B8A"/>
+  <ellipse cx="550" cy="410" rx="46" ry="22" fill="#E8B14A"/>
+  <ellipse cx="300" cy="430" rx="22" ry="14" fill="#7EB6FF"/>
+  <ellipse cx="500" cy="432" rx="20" ry="12" fill="#FFB7C5"/>
+  <ellipse cx="620" cy="240" rx="20" ry="24" fill="#F4F1EA"/>
+  <g fill="#F4D27A" opacity=".55">
+    <circle cx="180" cy="160" r="2"/><circle cx="320" cy="120" r="2"/>
+    <circle cx="480" cy="140" r="2"/><circle cx="640" cy="170" r="2"/>
+  </g>
+</svg>
