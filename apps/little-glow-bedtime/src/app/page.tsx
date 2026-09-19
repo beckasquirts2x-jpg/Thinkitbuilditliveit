@@ -1,8 +1,7 @@
-import Image from "next/image";
 import Link from "next/link";
 import { TipJar } from "@/components/TipJar";
 import { UnlockCTA } from "@/components/UnlockCTA";
-import { HOME_HERO } from "@/lib/art";
+import { SmileMoon } from "@/components/SmileMoon";
 import { APP_NAME, AUTHOR, stories } from "@/lib/content";
 
 export default function HomePage() {
@@ -19,32 +18,24 @@ export default function HomePage() {
   return (
     <div className="space-y-6">
       <section className="glow-hero overflow-hidden rounded-3xl border border-glow-gold/25 bg-night-900/70 text-center shadow-glow">
-        <div className="relative aspect-[16/10] w-full">
-          <Image
-            src={HOME_HERO}
-            alt="Pip and friends as the moon’s glow returns"
-            fill
-            priority
-            sizes="(max-width: 512px) 100vw, 512px"
-            className="object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-night-950/90 via-night-950/20 to-transparent" />
-          <div className="absolute inset-x-0 bottom-0 p-5">
+        <div className="relative aspect-[4/5] w-full bg-[#0B1F4A]">
+          <SmileMoon className="absolute inset-0 h-full w-full" />
+          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-night-950/95 via-night-950/40 to-transparent p-5">
             <h1 className="text-3xl font-bold tracking-tight text-glow-gold drop-shadow">
               {APP_NAME}
             </h1>
             <p className="mt-1 text-sm text-moon-200/90">
-              Bedtime stories by {AUTHOR}
+              Cozy stories by {AUTHOR}
             </p>
           </div>
         </div>
         <p className="px-6 py-4 text-base text-moon-200">
-          Three bedtime adventures: firefly{" "}
-          <strong className="text-glow-soft">Pip</strong> helping moon{" "}
-          <strong className="text-glow-soft">Luma</strong>, honeybee{" "}
-          <strong className="text-glow-soft">Buzz</strong> learning a soft alarm,
-          and peel-powered{" "}
-          <strong className="text-glow-soft">Banana Boy</strong> in Giggle Jungle.
+          Bedtime with firefly{" "}
+          <strong className="text-glow-soft">Pip</strong>, fairy{" "}
+          <strong className="text-glow-soft">Lumi & Friends</strong>, honeybee{" "}
+          <strong className="text-glow-soft">Buzz</strong>,{" "}
+          <strong className="text-glow-soft">Banana Boy</strong>, and a trip to{" "}
+          <strong className="text-glow-soft">Mars</strong>.
         </p>
       </section>
 

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { APP_NAME } from "@/lib/content";
 import { useApp } from "./AppProviders";
+import { SmileMoon } from "./SmileMoon";
 
 const links = [
   { href: "/", label: "Home", emoji: "✨" },
@@ -21,9 +22,7 @@ export function Nav() {
     <header className="sticky top-0 z-40 border-b border-glow-gold/20 bg-night-950/90 backdrop-blur-md">
       <div className="mx-auto flex max-w-lg items-center justify-between gap-2 px-4 py-3">
         <Link href="/" className="flex items-center gap-2 min-w-0">
-          <span className="text-2xl" aria-hidden>
-            🌟
-          </span>
+          <SmileMoon className="h-9 w-9 shrink-0 overflow-hidden rounded-2xl" />
           <div className="min-w-0">
             <p className="truncate font-semibold text-glow-gold text-sm sm:text-base">
               {APP_NAME}
