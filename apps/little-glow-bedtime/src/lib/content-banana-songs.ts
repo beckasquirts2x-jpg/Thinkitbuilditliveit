@@ -4,8 +4,8 @@ export const bananaSongs: Song[] = [
   {
     id: "see-you-next-peel",
     number: 1,
-    title: "See You Next Peel",
-    subtitle: "Theme — shells and softness can be friends",
+    title: "Peel You Later",
+    subtitle: "A hammock goodbye for sleepy peels",
     preview: true,
     lyrics: [
       "Tiny legs, leaf-cape light,",
@@ -44,8 +44,8 @@ export const bananaSongs: Song[] = [
   {
     id: "playtocol",
     number: 2,
-    title: "Playtocol",
-    subtitle: "General Grid learns wiggling is allowed",
+    title: "Optional Wiggles",
+    subtitle: "The bedtime rule book that learned to giggle",
     preview: false,
     lyrics: [
       "Rows and rules and shiny plans,",
@@ -85,8 +85,8 @@ export const bananaSongs: Song[] = [
   {
     id: "red-button-kindness",
     number: 3,
-    title: "Red Button Kindness",
-    subtitle: "Whirr-y and the blender learn a gentle swirl",
+    title: "Sleepy Cup Beeps",
+    subtitle: "Whirr-y’s hush-hush smoothie song",
     preview: false,
     lyrics: [
       "Blendy-ready, googly eyes,",
@@ -123,8 +123,8 @@ export const bananaSongs: Song[] = [
   {
     id: "slippery-dance",
     number: 4,
-    title: "Slippery Dance",
-    subtitle: "Space Peel — share your bounce among the stars",
+    title: "Pudding Star Shuffle",
+    subtitle: "A wobbly space nap with tiny legs",
     preview: false,
     lyrics: [
       "Fireflies blink. One star wiggles.",
@@ -161,8 +161,8 @@ export const bananaSongs: Song[] = [
   {
     id: "one-free-hug",
     number: 5,
-    title: "One Free Hug",
-    subtitle: "Grocery Gauntlet closer — redeem anywhere",
+    title: "Hug Coupon, Please",
+    subtitle: "Redeemable on any vine, any night",
     preview: false,
     lyrics: [
       "Vine-mail in the hammock,",
@@ -191,6 +191,6 @@ export const bananaSongs: Song[] = [
       "Good night, Banana Boy.",
       "See you next peel.",
     ],
-    placement: "Chapter 5 closer; pairs with See You Next Peel as the pack lullaby.",
+    placement: "Chapter 5 closer; pairs with Peel You Later as the pack lullaby.",
   },
 ];
