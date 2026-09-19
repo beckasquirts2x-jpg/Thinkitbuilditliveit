@@ -1,4 +1,7 @@
-/** Chapter / home hero / song cover art under /public/art/ */
+import { LILAH_BANNER } from "./lilah-banner";
+import { LILAH_CIRCLE } from "./lilah-circle";
+import { LILAH_STUMP } from "./lilah-stump";
+import { LILAH_TRAIL } from "./lilah-trail";
 
 export const HOME_HERO = "/art/25-finale-glow-returns.png";
 export const OG_IMAGE = "/og-image.png";
@@ -23,11 +26,11 @@ export const chapterArt: Record<string, string> = {
   "lift-from-the-forest": "/art/02-meet-rook.png",
   "star-crumbs": "/art/22-pip-stars.png",
   "red-dust-lullaby": "/art/24-pip-mars-moons.png",
-  "hi-im-lumi": "/art/lilah-01.svg",
-  "kind-hearts-circle": "/art/lilah-02.svg",
-  "lake-of-new-places": "/art/lilah-03.svg",
-  "biggest-magic": "/art/lilah-04.svg",
-  "treehouse-goodnight": "/art/lilah-05.svg",
+  "hi-im-lumi": LILAH_CIRCLE,
+  "kind-hearts-circle": LILAH_STUMP,
+  "lake-of-new-places": LILAH_BANNER,
+  "biggest-magic": LILAH_TRAIL,
+  "treehouse-goodnight": LILAH_STUMP,
 };
 
 export type IdeaPanel = {
@@ -62,8 +65,8 @@ export const songArt: Record<string, string> = {
   "red-button-kindness": "/art/banana-blender-of-doom.png",
   "slippery-dance": "/art/banana-space-peel.png",
   "one-free-hug": "/art/banana-grocery-gauntlet.png",
-  "hi-im-lumi-song": "/art/lilah-02.svg",
-  "kindness-biggest-magic": "/art/lilah-04.svg",
+  "hi-im-lumi-song": LILAH_STUMP,
+  "kindness-biggest-magic": LILAH_TRAIL,
 };
 
 export const behindTheStoryArt: { src: string; caption: string }[] = [
