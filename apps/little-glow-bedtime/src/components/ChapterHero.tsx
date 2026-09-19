@@ -19,6 +19,9 @@ export function ChapterHero({
   locked = false,
   className = "",
 }: Props) {
+  const unoptimized =
+    src.startsWith("data:") || src.endsWith(".svg") || src.endsWith(".jpg");
+
   if (thumb) {
     return (
       <span
@@ -31,6 +34,7 @@ export function ChapterHero({
           alt={alt}
           fill
           sizes="56px"
+          unoptimized={unoptimized}
           className={`object-cover ${locked ? "brightness-75 saturate-75" : ""}`}
         />
         {locked && (
@@ -54,6 +58,7 @@ export function ChapterHero({
         fill
         sizes="(max-width: 512px) 100vw, 512px"
         priority
+        unoptimized={unoptimized}
         className={`object-cover ${locked ? "brightness-75 blur-[1px]" : ""}`}
       />
     </div>

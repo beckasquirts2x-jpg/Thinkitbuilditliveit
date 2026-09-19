@@ -1,16 +1,8 @@
-import { LILAH_BANNER } from "./lilah-banner";
-import { LILAH_WAVE } from "./lilah-wave";
-import { LILAH_CIRCLE } from "./lilah-circle";
-import { LILAH_FIREFLY } from "./lilah-firefly";
-import { LILAH_LAKE } from "./lilah-lake";
-import { LILAH_KINDNESS } from "./lilah-kindness";
-import { LILAH_TREEHOUSE } from "./lilah-treehouse";
-
 export const HOME_HERO = "/art/25-finale-glow-returns.png";
 export const OG_IMAGE = "/og-image.png";
 export const FINALE_ART = "/art/25-finale-glow-returns.png";
 
-export const LILAH_COVER = LILAH_BANNER;
+export const LILAH_COVER = "/art/lilah-01.svg";
 
 export const chapterArt: Record<string, string> = {
   "night-went-gray": "/art/01-gray-night-pip.png",
@@ -31,11 +23,11 @@ export const chapterArt: Record<string, string> = {
   "lift-from-the-forest": "/art/02-meet-rook.png",
   "star-crumbs": "/art/22-pip-stars.png",
   "red-dust-lullaby": "/art/24-pip-mars-moons.png",
-  "hi-im-lumi": LILAH_WAVE,
-  "kind-hearts-circle": LILAH_CIRCLE,
-  "lake-of-new-places": LILAH_LAKE,
-  "biggest-magic": LILAH_KINDNESS,
-  "treehouse-goodnight": LILAH_TREEHOUSE,
+  "hi-im-lumi": "/art/lilah-01.svg",
+  "kind-hearts-circle": "/art/lilah-02.svg",
+  "lake-of-new-places": "/art/lilah-03.svg",
+  "biggest-magic": "/art/lilah-04.svg",
+  "treehouse-goodnight": "/art/lilah-05.svg",
 };
 
 export type IdeaPanel = {
@@ -70,8 +62,8 @@ export const songArt: Record<string, string> = {
   "red-button-kindness": "/art/banana-blender-of-doom.png",
   "slippery-dance": "/art/banana-space-peel.png",
   "one-free-hug": "/art/banana-grocery-gauntlet.png",
-  "hi-im-lumi-song": LILAH_FIREFLY,
-  "kindness-biggest-magic": LILAH_KINDNESS,
+  "hi-im-lumi-song": "/art/lilah-01.svg",
+  "kindness-biggest-magic": "/art/lilah-04.svg",
 };
 
 export const behindTheStoryArt: { src: string; caption: string }[] = [
@@ -94,5 +86,5 @@ export function getSongArt(songId: string): string | undefined {
 }
 
 export function getLilahCover(): string {
-  return LILAH_BANNER;
+  return LILAH_COVER;
 }
