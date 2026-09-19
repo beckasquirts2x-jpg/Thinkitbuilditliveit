@@ -5,6 +5,8 @@ import { UnlockCTA } from "@/components/UnlockCTA";
 import { useApp } from "@/components/AppProviders";
 import { AUTHOR, HIVE_NIGHTS_PACK, HIVE_NIGHTS_PRICE, stories } from "@/lib/content";
 
+const NEW_STORY_IDS = new Set(["lumi-and-friends", "pip-flies-to-mars"]);
+
 export default function StoryPickerPage() {
   const { unlocked, unlockReady } = useApp();
 
@@ -23,7 +25,7 @@ export default function StoryPickerPage() {
       <ul className="space-y-3">
         {stories.map((story) => {
           const freeCh = story.chapters.filter((c) => c.preview).length;
-          const isNew = story.id === "pip-flies-to-mars";
+          const isNew = NEW_STORY_IDS.has(story.id);
           return (
             <li key={story.id}>
               <Link

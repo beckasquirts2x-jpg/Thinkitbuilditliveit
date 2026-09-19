@@ -13,8 +13,15 @@ import { moonStory } from "./content-moon";
 import { honeybeeStory } from "./content-honeybee";
 import { bananaStory } from "./content-banana";
 import { marsStory } from "./content-mars";
+import { lumiStory } from "./content-lumi";
 
-export const stories = [moonStory, honeybeeStory, bananaStory, marsStory];
+export const stories = [
+  moonStory,
+  lumiStory,
+  honeybeeStory,
+  bananaStory,
+  marsStory,
+];
 
 /** Moon story chapters — backward-compatible default for older routes */
 export const chapters: Chapter[] = stories[0].chapters;
