@@ -4,11 +4,11 @@ export const lumiSongs: Song[] = [
   {
     id: "hi-im-lumi-song",
     number: 1,
-    title: "Hi, I’m Lumi",
-    subtitle: "A hello from the sparkle-dress fairy",
+    title: "Hi, I’m Lilah",
+    subtitle: "A hello from the sparkle-dress fairy (LIE-la)",
     preview: true,
     lyrics: [
-      "Hi, I’m Lumi — red and snowy hair,",
+      "Hi, I’m Lilah — red and snowy hair,",
       "Wings like sugar, lights in the air.",
       "Come along, the forest knows my name.",
       "Every day a new adventure game.",
@@ -25,11 +25,11 @@ export const lumiSongs: Song[] = [
     id: "kindness-biggest-magic",
     number: 2,
     title: "Kindness Makes the Biggest Magic",
-    subtitle: "The promise song for Lumi’s circle",
+    subtitle: "The promise song for Lilah’s circle",
     preview: false,
     lyrics: [
       "Benny, Foxy, Squirrel, Ollie too,",
-      "A raccoon peeking from the dew.",
+      "Rocky peeking from the dew.",
       "Circle up on clover ground—",
       "Little friends can hold a town.",
       "",

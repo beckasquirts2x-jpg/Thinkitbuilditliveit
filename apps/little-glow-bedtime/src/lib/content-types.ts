@@ -30,6 +30,8 @@ export type Story = {
   emoji: string;
   chapters: Chapter[];
   songs: Song[];
+  /** Optional read-along video under /public */
+  videoUrl?: string;
 };
 
 export const APP_NAME = "Little Glow Bedtime";
