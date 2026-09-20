@@ -9,6 +9,68 @@
   --moon-200: #c9d4f0;
   --glow-gold: #f0d27a;
   --glow-soft: #ffe9a8;
+  --wash-top: #152045;
+  --wash-bottom: #1a1430;
+}
+
+html[data-theme="forest"] {
+  --background: #07140d;
+  --night-950: #04100a;
+  --night-900: #0b1c14;
+  --night-800: #13261c;
+  --moon-200: #cfe8d8;
+  --glow-gold: #d7e08a;
+  --glow-soft: #eef7b8;
+  --wash-top: #143322;
+  --wash-bottom: #0d2418;
+}
+
+html[data-theme="plum"] {
+  --background: #140818;
+  --night-950: #0e0512;
+  --night-900: #1b0d24;
+  --night-800: #281533;
+  --moon-200: #e4d2f2;
+  --glow-gold: #efc3ea;
+  --glow-soft: #f8dff4;
+  --wash-top: #3a1850;
+  --wash-bottom: #2a1030;
+}
+
+html[data-theme="cocoa"] {
+  --background: #160e08;
+  --night-950: #100a06;
+  --night-900: #22160d;
+  --night-800: #2e1e12;
+  --moon-200: #f0e0cc;
+  --glow-gold: #f0c27a;
+  --glow-soft: #ffe0b0;
+  --wash-top: #3a2414;
+  --wash-bottom: #2a160c;
+}
+
+html[data-theme="rose"] {
+  --background: #180810;
+  --night-950: #12060c;
+  --night-900: #241018;
+  --night-800: #331822;
+  --moon-200: #f3d5de;
+  --glow-gold: #f3b7c8;
+  --glow-soft: #ffd6e2;
+  --wash-top: #4a1830;
+  --wash-bottom: #30101c;
+}
+
+html[data-theme="ink"] {
+  --background: #050505;
+  --night-950: #000000;
+  --night-900: #101010;
+  --night-800: #1a1a1a;
+  --moon-200: #e6e6e6;
+  --glow-gold: #f0d27a;
+  --glow-soft: #ffe9a8;
+  --wash-top: #1c1c1c;
+  --wash-bottom: #0a0a0a;
 }
 
 @theme inline {
@@ -34,8 +96,8 @@ html {
 
 body {
   background:
-    radial-gradient(ellipse at top, #152045 0%, transparent 55%),
-    radial-gradient(ellipse at bottom, #1a1430 0%, transparent 50%),
+    radial-gradient(ellipse at top, var(--wash-top) 0%, transparent 55%),
+    radial-gradient(ellipse at bottom, var(--wash-bottom) 0%, transparent 50%),
     var(--background);
   color: var(--foreground);
   min-height: 100dvh;
@@ -71,7 +133,6 @@ html.sleepy-font .lyric-line:not(.chorus-label) {
   opacity: 0.85;
 }
 
-/* Soft, calm glow — home hero, chapter art, accents */
 @keyframes soft-glow-pulse {
   0%,
   100% {
