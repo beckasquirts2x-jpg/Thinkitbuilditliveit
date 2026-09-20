@@ -3,10 +3,20 @@ const FAVORITES_KEY = "little-glow-favorites";
 const AUTO_ADVANCE_KEY = "little-glow-auto-advance";
 const SLEEPY_FONT_KEY = "little-glow-sleepy-font";
 const SLEEP_TIMER_END_KEY = "little-glow-sleep-timer-end";
+const THEME_KEY = "little-glow-theme";
+const VOICE_KEY = "little-glow-voice";
+const REQUESTS_KEY = "little-glow-chapter-requests";
 
 export type FavoriteItem = {
   type: "chapter" | "song";
   id: string;
+};
+
+export type ChapterRequestItem = {
+  storyId: string;
+  storyTitle: string;
+  idea: string;
+  createdAt: number;
 };
 
 function safeParse<T>(raw: string | null, fallback: T): T {
@@ -72,7 +82,40 @@ export function setSleepyFont(value: boolean): void {
   localStorage.setItem(SLEEPY_FONT_KEY, value ? "true" : "false");
 }
 
-/** Absolute end timestamp (ms) for sleep timer persistence */
+export function getThemeId(): string | null {
+  if (typeof window === "undefined") return null;
+  return localStorage.getItem(THEME_KEY);
+}
+
+export function setThemeId(value: string): void {
+  if (typeof window === "undefined") return;
+  localStorage.setItem(THEME_KEY, value);
+}
+
+export function getVoiceURI(): string {
+  if (typeof window === "undefined") return "";
+  return localStorage.getItem(VOICE_KEY) ?? "";
+}
+
+export function setVoiceURI(value: string): void {
+  if (typeof window === "undefined") return;
+  if (!value) localStorage.removeItem(VOICE_KEY);
+  else localStorage.setItem(VOICE_KEY, value);
+}
+
+export function getChapterRequests(): ChapterRequestItem[] {
+  if (typeof window === "undefined") return [];
+  return safeParse<ChapterRequestItem[]>(localStorage.getItem(REQUESTS_KEY), []);
+}
+
+export function addChapterRequest(item: ChapterRequestItem): ChapterRequestItem[] {
+  const next = [...getChapterRequests(), item].slice(-40);
+  if (typeof window !== "undefined") {
+    localStorage.setItem(REQUESTS_KEY, JSON.stringify(next));
+  }
+  return next;
+}
+
 export function getSleepTimerEnd(): number | null {
   if (typeof window === "undefined") return null;
   const raw = localStorage.getItem(SLEEP_TIMER_END_KEY);
