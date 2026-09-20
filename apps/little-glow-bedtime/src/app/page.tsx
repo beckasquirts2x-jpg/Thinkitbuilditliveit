@@ -1,8 +1,9 @@
 import Link from "next/link";
 import { TipJar } from "@/components/TipJar";
 import { UnlockCTA } from "@/components/UnlockCTA";
-import { GlowMark } from "@/components/GlowMark";
+import { ChapterRequest } from "@/components/ChapterRequest";
 import { APP_NAME, AUTHOR, stories } from "@/lib/content";
+import { LILAH_WAVE } from "@/lib/lilah-wave";
 
 export default function HomePage() {
   const freeChapters = stories.reduce(
@@ -17,20 +18,27 @@ export default function HomePage() {
 
   return (
     <div className="space-y-6">
-      <section className="glow-hero overflow-hidden rounded-3xl border border-glow-gold/25 bg-night-900/70 px-6 py-8 text-center shadow-glow">
-        <GlowMark className="mx-auto h-16 w-16" />
-        <h1 className="mt-4 text-3xl font-bold tracking-tight text-glow-gold drop-shadow">
-          {APP_NAME}
-        </h1>
-        <p className="mt-1 text-sm text-moon-200/90">Cozy stories by {AUTHOR}</p>
-        <p className="mt-4 text-base text-moon-200">
-          Bedtime with firefly{" "}
-          <strong className="text-glow-soft">Pip</strong>, fairy{" "}
-          <strong className="text-glow-soft">Lilah & Friends</strong>, honeybee{" "}
-          <strong className="text-glow-soft">Buzz</strong>,{" "}
-          <strong className="text-glow-soft">Banana Boy</strong>, and a trip to{" "}
-          <strong className="text-glow-soft">Mars</strong>.
-        </p>
+      <section className="glow-hero overflow-hidden rounded-3xl border border-glow-gold/25 bg-night-900/70 text-center shadow-glow">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={LILAH_WAVE}
+          alt="Lilah waving hello"
+          className="mx-auto h-48 w-full object-cover object-top sm:h-56"
+        />
+        <div className="px-6 py-5">
+          <h1 className="text-3xl font-bold tracking-tight text-glow-gold drop-shadow">
+            {APP_NAME}
+          </h1>
+          <p className="mt-1 text-sm text-moon-200/90">Cozy stories by {AUTHOR}</p>
+          <p className="mt-4 text-base text-moon-200">
+            Bedtime with fairy{" "}
+            <strong className="text-glow-soft">Lilah</strong>, firefly{" "}
+            <strong className="text-glow-soft">Pip</strong>, honeybee{" "}
+            <strong className="text-glow-soft">Buzz</strong>,{" "}
+            <strong className="text-glow-soft">Banana Boy</strong>, and a trip to{" "}
+            <strong className="text-glow-soft">Mars</strong>.
+          </p>
+        </div>
       </section>
 
       <section className="grid grid-cols-2 gap-3">
@@ -38,7 +46,7 @@ export default function HomePage() {
           href="/story"
           className="flex min-h-32 flex-col items-center justify-center rounded-3xl border border-white/10 bg-night-800/80 p-5 text-center transition hover:border-glow-gold/40"
         >
-          <span className="text-4xl">📖</span>
+          <span className="text-4xl">\ud83d\udcd6</span>
           <span className="mt-2 text-lg font-semibold text-glow-gold">Story</span>
           <span className="mt-1 text-sm text-moon-200/65">
             {storyCount} stories
@@ -48,7 +56,7 @@ export default function HomePage() {
           href="/songs"
           className="flex min-h-32 flex-col items-center justify-center rounded-3xl border border-white/10 bg-night-800/80 p-5 text-center transition hover:border-glow-gold/40"
         >
-          <span className="text-4xl">🎵</span>
+          <span className="text-4xl">\ud83c\udfb5</span>
           <span className="mt-2 text-lg font-semibold text-glow-gold">Songs</span>
           <span className="mt-1 text-sm text-moon-200/65">Soft lullabies</span>
         </Link>
@@ -56,17 +64,17 @@ export default function HomePage() {
           href="/timer"
           className="flex min-h-32 flex-col items-center justify-center rounded-3xl border border-white/10 bg-night-800/80 p-5 text-center transition hover:border-glow-gold/40"
         >
-          <span className="text-4xl">⏱</span>
+          <span className="text-4xl">\u23f1</span>
           <span className="mt-2 text-lg font-semibold text-glow-gold">Timer</span>
           <span className="mt-1 text-sm text-moon-200/65">Sleep countdown</span>
         </Link>
         <Link
-          href="/favorites"
+          href="/settings"
           className="flex min-h-32 flex-col items-center justify-center rounded-3xl border border-white/10 bg-night-800/80 p-5 text-center transition hover:border-glow-gold/40"
         >
-          <span className="text-4xl">💛</span>
-          <span className="mt-2 text-lg font-semibold text-glow-gold">Saved</span>
-          <span className="mt-1 text-sm text-moon-200/65">Your favorites</span>
+          <span className="text-4xl">\ud83c\udfa8</span>
+          <span className="mt-2 text-lg font-semibold text-glow-gold">Look</span>
+          <span className="mt-1 text-sm text-moon-200/65">Color & voice</span>
         </Link>
       </section>
 
@@ -85,6 +93,8 @@ export default function HomePage() {
       </section>
 
       <UnlockCTA />
+
+      <ChapterRequest defaultStoryId="lilah-and-friends" />
 
       <section className="flex flex-col items-center gap-3 rounded-3xl border border-white/10 bg-night-900/40 p-5 text-center">
         <p className="text-base text-moon-200/80">Like this little glow?</p>

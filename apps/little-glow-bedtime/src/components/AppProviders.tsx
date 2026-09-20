@@ -9,8 +9,9 @@ import {
 import { useUnlock } from "@/hooks/useUnlock";
 import { useFavorites } from "@/hooks/useFavorites";
 import { useSleepTimer, type TimerMinutes } from "@/hooks/useSleepTimer";
-import { useBedtimePrefs } from "@/hooks/useBedtimePrefs";
+import { useBedtimePrefs, type DeviceVoice } from "@/hooks/useBedtimePrefs";
 import type { FavoriteItem } from "@/lib/storage";
+import type { ThemeId } from "@/lib/themes";
 
 type AppContextValue = {
   unlocked: boolean;
@@ -30,9 +31,14 @@ type AppContextValue = {
   dismissSleepy: () => void;
   autoAdvance: boolean;
   sleepyFont: boolean;
+  theme: ThemeId;
+  voiceURI: string;
+  voices: DeviceVoice[];
   prefsReady: boolean;
   setAutoAdvance: (v: boolean) => void;
   setSleepyFont: (v: boolean) => void;
+  setTheme: (v: ThemeId) => void;
+  setVoiceURI: (v: string) => void;
   toggleAutoAdvance: () => void;
   toggleSleepyFont: () => void;
 };
@@ -64,9 +70,14 @@ export function AppProviders({ children }: { children: ReactNode }) {
       dismissSleepy: timer.dismissSleepy,
       autoAdvance: prefs.autoAdvance,
       sleepyFont: prefs.sleepyFont,
+      theme: prefs.theme,
+      voiceURI: prefs.voiceURI,
+      voices: prefs.voices,
       prefsReady: prefs.ready,
       setAutoAdvance: prefs.setAutoAdvance,
       setSleepyFont: prefs.setSleepyFont,
+      setTheme: prefs.setTheme,
+      setVoiceURI: prefs.setVoiceURI,
       toggleAutoAdvance: prefs.toggleAutoAdvance,
       toggleSleepyFont: prefs.toggleSleepyFont,
     }),

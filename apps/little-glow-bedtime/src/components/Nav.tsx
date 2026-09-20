@@ -4,14 +4,14 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { APP_NAME } from "@/lib/content";
 import { useApp } from "./AppProviders";
-import { GlowMark } from "./GlowMark";
+import { LILAH_WAVE } from "@/lib/lilah-wave";
 
 const links = [
-  { href: "/", label: "Home", emoji: "✨" },
-  { href: "/story", label: "Story", emoji: "📖" },
-  { href: "/songs", label: "Songs", emoji: "🎵" },
-  { href: "/timer", label: "Timer", emoji: "🌙" },
-  { href: "/favorites", label: "♥", emoji: "💛" },
+  { href: "/", label: "Home", emoji: "\ud83c\udfe1" },
+  { href: "/story", label: "Story", emoji: "\ud83d\udcd6" },
+  { href: "/songs", label: "Songs", emoji: "\ud83c\udfb5" },
+  { href: "/timer", label: "Timer", emoji: "\ud83c\udf19" },
+  { href: "/settings", label: "Look", emoji: "\ud83c\udfa8" },
 ];
 
 export function Nav() {
@@ -22,7 +22,12 @@ export function Nav() {
     <header className="sticky top-0 z-40 border-b border-glow-gold/20 bg-night-950/90 backdrop-blur-md">
       <div className="mx-auto flex max-w-lg items-center justify-between gap-2 px-4 py-3">
         <Link href="/" className="flex items-center gap-2 min-w-0">
-          <GlowMark className="h-9 w-9 shrink-0 overflow-hidden rounded-2xl" />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={LILAH_WAVE}
+            alt=""
+            className="h-9 w-9 shrink-0 rounded-2xl object-cover object-top"
+          />
           <div className="min-w-0">
             <p className="truncate font-semibold text-glow-gold text-sm sm:text-base">
               {APP_NAME}
@@ -39,7 +44,7 @@ export function Nav() {
             href="/timer"
             className="rounded-full bg-glow-gold/15 px-3 py-1 text-xs font-medium text-glow-gold"
           >
-            ⏱ {timerLabel}
+            \u23f1 {timerLabel}
           </Link>
         )}
       </div>
