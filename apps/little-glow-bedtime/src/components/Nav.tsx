@@ -7,11 +7,11 @@ import { useApp } from "./AppProviders";
 import { LILAH_WAVE } from "@/lib/lilah-wave";
 
 const links = [
-  { href: "/", label: "Home", emoji: "\ud83c\udfe1" },
-  { href: "/story", label: "Story", emoji: "\ud83d\udcd6" },
-  { href: "/songs", label: "Songs", emoji: "\ud83c\udfb5" },
-  { href: "/timer", label: "Timer", emoji: "\ud83c\udf19" },
-  { href: "/settings", label: "Look", emoji: "\ud83c\udfa8" },
+  { href: "/", label: "Home", emoji: "Home" },
+  { href: "/story", label: "Story", emoji: "Book" },
+  { href: "/songs", label: "Songs", emoji: "Song" },
+  { href: "/timer", label: "Timer", emoji: "Moon" },
+  { href: "/settings", label: "Look", emoji: "Look" },
 ];
 
 export function Nav() {
@@ -44,7 +44,7 @@ export function Nav() {
             href="/timer"
             className="rounded-full bg-glow-gold/15 px-3 py-1 text-xs font-medium text-glow-gold"
           >
-            \u23f1 {timerLabel}
+            {timerLabel}
           </Link>
         )}
       </div>
@@ -64,7 +64,7 @@ export function Nav() {
                   : "text-moon-200/80 hover:bg-white/5"
               }`}
             >
-              <span className="text-lg leading-none">{link.emoji}</span>
+              <span className="text-[10px] font-semibold leading-none uppercase tracking-wide">{link.emoji}</span>
               <span className="mt-0.5">{link.label}</span>
             </Link>
           );
