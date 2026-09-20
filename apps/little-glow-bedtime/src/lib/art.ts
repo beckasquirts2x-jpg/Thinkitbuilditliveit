@@ -30,6 +30,10 @@ export const chapterArt: Record<string, string> = {
   "treehouse-goodnight": "/art/lilah-05.svg",
 };
 
+export const storyCoverArt: Record<string, string> = {
+  "lilah-and-friends": "/art/lilah-banner.svg",
+};
+
 export type IdeaPanel = {
   src: string;
   label: string;
@@ -83,4 +87,8 @@ export function getChapterArt(chapterId: string): string | undefined {
 
 export function getSongArt(songId: string): string | undefined {
   return songArt[songId];
+}
+
+export function getStoryCover(storyId: string): string | undefined {
+  return storyCoverArt[storyId];
 }

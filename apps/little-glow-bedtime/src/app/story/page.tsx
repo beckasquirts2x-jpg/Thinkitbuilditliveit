@@ -4,6 +4,7 @@ import Link from "next/link";
 import { UnlockCTA } from "@/components/UnlockCTA";
 import { useApp } from "@/components/AppProviders";
 import { AUTHOR, HIVE_NIGHTS_PACK, HIVE_NIGHTS_PRICE, stories } from "@/lib/content";
+import { getStoryCover } from "@/lib/art";
 
 const NEW_STORY_IDS = new Set([
   "lilah-and-friends",
@@ -30,18 +31,28 @@ export default function StoryPickerPage() {
         {stories.map((story) => {
           const freeCh = story.chapters.filter((c) => c.preview).length;
           const isNew = NEW_STORY_IDS.has(story.id);
+          const cover = getStoryCover(story.id);
           return (
             <li key={story.id}>
               <Link
                 href={`/story/${story.id}`}
                 className="flex min-h-24 gap-3 rounded-3xl border border-white/10 bg-night-800/70 p-4 transition hover:border-glow-gold/40"
               >
-                <span
-                  className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-glow-gold/15 text-3xl"
-                  aria-hidden
-                >
-                  {story.emoji}
-                </span>
+                {cover ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={cover}
+                    alt=""
+                    className="h-14 w-14 shrink-0 rounded-2xl object-cover"
+                  />
+                ) : (
+                  <span
+                    className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-glow-gold/15 text-3xl"
+                    aria-hidden
+                  >
+                    {story.emoji}
+                  </span>
+                )}
                 <div className="min-w-0 flex-1">
                   <p className="flex flex-wrap items-center gap-2 font-semibold text-glow-gold">
                     {story.title}

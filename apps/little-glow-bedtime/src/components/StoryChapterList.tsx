@@ -4,11 +4,12 @@ import Link from "next/link";
 import { ChapterHero } from "@/components/ChapterHero";
 import { UnlockCTA } from "@/components/UnlockCTA";
 import { useApp } from "@/components/AppProviders";
-import { getChapterArt } from "@/lib/art";
+import { getChapterArt, getStoryCover } from "@/lib/art";
 import { AUTHOR, canAccessChapter, type Story } from "@/lib/content";
 
 export function StoryChapterList({ story }: { story: Story }) {
   const { unlocked, unlockReady } = useApp();
+  const cover = getStoryCover(story.id);
 
   return (
     <div className="space-y-5">
@@ -16,6 +17,14 @@ export function StoryChapterList({ story }: { story: Story }) {
         <Link href="/story" className="text-sm text-glow-gold/80">
           ← All stories
         </Link>
+        {cover && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={cover}
+            alt=""
+            className="mt-3 w-full rounded-3xl border border-white/10 object-cover"
+          />
+        )}
         <p className="mt-2 text-sm text-moon-200/60">
           {story.emoji} Bedtime story
         </p>
