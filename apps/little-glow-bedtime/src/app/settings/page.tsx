@@ -28,7 +28,9 @@ export default function SettingsPage() {
       "Goodnight little glow. Soft voices for sleepy stories."
     );
     utter.rate = 0.9;
-    const match = voices.find((v) => v.voiceURI === uri);
+    const match = window.speechSynthesis
+      .getVoices()
+      .find((v) => v.voiceURI === uri);
     if (match) utter.voice = match;
     window.speechSynthesis.speak(utter);
   }
