@@ -21,12 +21,18 @@ const names = [
 ];
 
 for (const name of names) {
-  const parts = readdirSync(chunkDir)
-    .filter((f) => f.startsWith(`${name}-`) && f.endsWith(".txt"))
-    .sort();
-  if (!parts.length) continue;
-  const b64 = parts.map((f) => readFileSync(join(chunkDir, f), "utf8").trim()).join("");
+  const single = join(chunkDir, `${name}.b64`);
+  let b64 = "";
+  if (existsSync(single)) {
+    b64 = readFileSync(single, "utf8").trim();
+  } else {
+    const parts = readdirSync(chunkDir)
+      .filter((f) => f.startsWith(`${name}-`) && f.endsWith(".txt"))
+      .sort();
+    if (!parts.length) continue;
+    b64 = parts.map((f) => readFileSync(join(chunkDir, f), "utf8").trim()).join("");
+  }
   const buf = Buffer.from(b64, "base64");
   writeFileSync(join(outDir, `${name}.jpg`), buf);
-  console.log("assembled", name + ".jpg", buf.length, "from", parts.length, "chunks");
+  console.log("assembled", name + ".jpg", buf.length);
 }
