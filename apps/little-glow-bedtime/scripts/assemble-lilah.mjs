@@ -1,4 +1,4 @@
-import { readdirSync, readFileSync, writeFileSync, mkdirSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync, writeFileSync, mkdirSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -6,6 +6,10 @@ const root = dirname(fileURLToPath(import.meta.url));
 const chunkDir = join(root, "lilah-chunks");
 const outDir = join(root, "..", "public", "art");
 mkdirSync(outDir, { recursive: true });
+if (!existsSync(chunkDir)) {
+  console.log("no lilah-chunks dir, skip assemble");
+  process.exit(0);
+}
 
 const names = [
   "lilah-banner",
@@ -21,7 +25,8 @@ for (const name of names) {
     .filter((f) => f.startsWith(`${name}-`) && f.endsWith(".txt"))
     .sort();
   if (!parts.length) continue;
-  const svg = parts.map((f) => readFileSync(join(chunkDir, f), "utf8")).join("");
-  writeFileSync(join(outDir, `${name}.svg`), svg);
-  console.log("assembled", name, svg.length, "from", parts.length, "chunks");
+  const b64 = parts.map((f) => readFileSync(join(chunkDir, f), "utf8").trim()).join("");
+  const buf = Buffer.from(b64, "base64");
+  writeFileSync(join(outDir, `${name}.jpg`), buf);
+  console.log("assembled", name + ".jpg", buf.length, "from", parts.length, "chunks");
 }
