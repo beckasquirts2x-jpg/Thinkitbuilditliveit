@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { ChapterHero } from "@/components/ChapterHero";
+import { ChapterRequest } from "@/components/ChapterRequest";
 import { UnlockCTA } from "@/components/UnlockCTA";
 import { useApp } from "@/components/AppProviders";
 import { getChapterArt, getStoryCover } from "@/lib/art";
@@ -15,7 +16,7 @@ export function StoryChapterList({ story }: { story: Story }) {
     <div className="space-y-5">
       <header>
         <Link href="/story" className="text-sm text-glow-gold/80">
-          ← All stories
+          All stories
         </Link>
         {cover && (
           // eslint-disable-next-line @next/next/no-img-element
@@ -49,7 +50,7 @@ export function StoryChapterList({ story }: { story: Story }) {
           href={`/story/${story.id}/watch`}
           className="flex min-h-14 items-center justify-center gap-2 rounded-3xl border border-glow-gold/40 bg-glow-gold/15 px-4 text-base font-semibold text-glow-gold"
         >
-          ▶ Watch read-along video
+          Watch read-along video
         </Link>
       )}
 
@@ -73,7 +74,7 @@ export function StoryChapterList({ story }: { story: Story }) {
                   <ChapterHero src={art} alt="" thumb locked={!open} />
                 ) : (
                   <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-glow-gold/15 text-sm font-bold text-glow-gold">
-                    {open ? chapter.number : "🔒"}
+                    {open ? chapter.number : "*"}
                   </span>
                 )}
                 <div className="min-w-0 flex-1">
@@ -87,13 +88,15 @@ export function StoryChapterList({ story }: { story: Story }) {
                   </p>
                 </div>
                 <span className="text-glow-gold/70" aria-hidden>
-                  →
+                  &gt;
                 </span>
               </Link>
             </li>
           );
         })}
       </ol>
+
+      <ChapterRequest defaultStoryId={story.id} />
     </div>
   );
 }
