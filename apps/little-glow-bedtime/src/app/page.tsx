@@ -46,8 +46,7 @@ export default function HomePage() {
           href="/story"
           className="flex min-h-32 flex-col items-center justify-center rounded-3xl border border-white/10 bg-night-800/80 p-5 text-center transition hover:border-glow-gold/40"
         >
-          <span className="text-4xl">\ud83d\udcd6</span>
-          <span className="mt-2 text-lg font-semibold text-glow-gold">Story</span>
+          <span className="text-lg font-semibold text-glow-gold">Story</span>
           <span className="mt-1 text-sm text-moon-200/65">
             {storyCount} stories
           </span>
@@ -56,39 +55,36 @@ export default function HomePage() {
           href="/songs"
           className="flex min-h-32 flex-col items-center justify-center rounded-3xl border border-white/10 bg-night-800/80 p-5 text-center transition hover:border-glow-gold/40"
         >
-          <span className="text-4xl">\ud83c\udfb5</span>
-          <span className="mt-2 text-lg font-semibold text-glow-gold">Songs</span>
+          <span className="text-lg font-semibold text-glow-gold">Songs</span>
           <span className="mt-1 text-sm text-moon-200/65">Soft lullabies</span>
         </Link>
         <Link
           href="/timer"
           className="flex min-h-32 flex-col items-center justify-center rounded-3xl border border-white/10 bg-night-800/80 p-5 text-center transition hover:border-glow-gold/40"
         >
-          <span className="text-4xl">\u23f1</span>
-          <span className="mt-2 text-lg font-semibold text-glow-gold">Timer</span>
+          <span className="text-lg font-semibold text-glow-gold">Timer</span>
           <span className="mt-1 text-sm text-moon-200/65">Sleep countdown</span>
         </Link>
         <Link
           href="/settings"
           className="flex min-h-32 flex-col items-center justify-center rounded-3xl border border-white/10 bg-night-800/80 p-5 text-center transition hover:border-glow-gold/40"
         >
-          <span className="text-4xl">\ud83c\udfa8</span>
-          <span className="mt-2 text-lg font-semibold text-glow-gold">Look</span>
-          <span className="mt-1 text-sm text-moon-200/65">Color & voice</span>
+          <span className="text-lg font-semibold text-glow-gold">Look</span>
+          <span className="mt-1 text-sm text-moon-200/65">Color and voice</span>
         </Link>
       </section>
 
       <section className="rounded-3xl border border-white/10 bg-night-900/50 p-5">
         <h2 className="text-lg font-semibold text-glow-gold">Free tonight</h2>
         <ul className="mt-3 space-y-2 text-base text-moon-200/90">
-          <li>• Story start + timer + saved list</li>
+          <li>Story start + timer + saved list</li>
           <li>
-            • {freeChapters} free chapter{freeChapters === 1 ? "" : "s"}
+            {freeChapters} free chapter{freeChapters === 1 ? "" : "s"}
           </li>
           <li>
-            • {freeSongs} free song{freeSongs === 1 ? "" : "s"}
+            {freeSongs} free song{freeSongs === 1 ? "" : "s"}
           </li>
-          <li>• No ads · No subscription</li>
+          <li>No ads. No subscription.</li>
         </ul>
       </section>
 
@@ -103,9 +99,9 @@ export default function HomePage() {
 
       <footer className="space-y-2 pb-4 text-center text-sm text-moon-200/55">
         <Link href="/behind-the-story" className="text-glow-gold/80 underline">
-          Behind the story → movie path
+          Behind the story
         </Link>
-        <p>Made with a little glow ✨</p>
+        <p>Made with a little glow</p>
       </footer>
     </div>
   );
