@@ -10,9 +10,7 @@ type Mode = "loading" | "file" | "speech" | "missing-song";
 type Props = {
   id: string;
   title: string;
-  /** story → SpeechSynthesis fallback; song → drop-mp3 helper */
   kind: "story" | "song";
-  /** Text to speak for story chapters */
   speakText?: string;
 };
 
@@ -37,7 +35,7 @@ async function probeAudio(id: string): Promise<string | null> {
 }
 
 export function AudioPlayer({ id, title, kind, speakText }: Props) {
-  const { sleepy } = useApp();
+  const { sleepy, voiceURI } = useApp();
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [mode, setMode] = useState<Mode>("loading");
   const [src, setSrc] = useState<string | null>(null);
@@ -115,15 +113,19 @@ export function AudioPlayer({ id, title, kind, speakText }: Props) {
     };
   }, [stopSpeech, pauseFile]);
 
-  const pickSoftVoice = useCallback(() => {
+  const pickVoice = useCallback(() => {
     const voices = window.speechSynthesis.getVoices();
-    const preferred =
+    if (voiceURI) {
+      const chosen = voices.find((v) => v.voiceURI === voiceURI);
+      if (chosen) return chosen;
+    }
+    return (
       voices.find((v) => /samantha|karen|moira|fiona|soft|female/i.test(v.name)) ||
       voices.find((v) => v.lang.startsWith("en") && /female|woman|girl/i.test(v.name)) ||
       voices.find((v) => v.lang.startsWith("en")) ||
-      voices[0];
-    return preferred;
-  }, []);
+      voices[0]
+    );
+  }, [voiceURI]);
 
   const toggleSpeech = useCallback(() => {
     if (!speakText || typeof window === "undefined" || !("speechSynthesis" in window)) {
@@ -137,13 +139,13 @@ export function AudioPlayer({ id, title, kind, speakText }: Props) {
     const utter = new SpeechSynthesisUtterance(speakText);
     utter.rate = 0.9;
     utter.pitch = 1;
-    const voice = pickSoftVoice();
+    const voice = pickVoice();
     if (voice) utter.voice = voice;
     utter.onend = () => setPlaying(false);
     utter.onerror = () => setPlaying(false);
     setPlaying(true);
     window.speechSynthesis.speak(utter);
-  }, [speakText, playing, stopSpeech, pickSoftVoice]);
+  }, [speakText, playing, stopSpeech, pickVoice]);
 
   const toggleFile = useCallback(() => {
     const el = audioRef.current;
@@ -180,7 +182,7 @@ export function AudioPlayer({ id, title, kind, speakText }: Props) {
   if (mode === "loading") {
     return (
       <div className="rounded-2xl border border-white/10 bg-night-900/60 px-4 py-3 text-sm text-moon-200/60">
-        Checking audio…
+        Checking audio...
       </div>
     );
   }
@@ -188,7 +190,7 @@ export function AudioPlayer({ id, title, kind, speakText }: Props) {
   if (mode === "missing-song") {
     return (
       <div className="rounded-2xl border border-dashed border-glow-gold/40 bg-night-900/60 px-4 py-4 text-center">
-        <p className="text-sm text-glow-gold/90">🎧 Player ready</p>
+        <p className="text-sm text-glow-gold/90">Player ready</p>
         <p className="mt-2 text-xs text-moon-200/70">
           Drop Suno mp3 into{" "}
           <code className="rounded bg-night-800 px-1.5 py-0.5 text-glow-soft">
@@ -208,11 +210,10 @@ export function AudioPlayer({ id, title, kind, speakText }: Props) {
           onClick={toggleSpeech}
           className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-2xl bg-glow-gold/90 px-4 py-3 text-sm font-semibold text-night-950"
         >
-          <span aria-hidden>{playing ? "⏸" : "▶"}</span>
           {playing ? "Pause reading" : "Read aloud"}
         </button>
         <p className="text-center text-xs text-moon-200/55">
-          Uses your device voice until a recorded file is added.
+          Uses the voice you picked in Look.
         </p>
       </div>
     );
@@ -237,7 +238,7 @@ export function AudioPlayer({ id, title, kind, speakText }: Props) {
           className="inline-flex min-h-12 min-w-12 items-center justify-center rounded-2xl bg-glow-gold px-3 text-lg font-semibold text-night-950"
           aria-label={playing ? `Pause ${title}` : `Play ${title}`}
         >
-          {playing ? "⏸" : "▶"}
+          {playing ? "Pause" : "Play"}
         </button>
         <div className="min-w-0 flex-1">
           <p className="truncate text-sm font-medium text-glow-gold">{title}</p>
@@ -251,7 +252,7 @@ export function AudioPlayer({ id, title, kind, speakText }: Props) {
           className="min-h-10 rounded-xl border border-white/10 px-2 text-xs text-moon-200/80"
           title="Playback speed"
         >
-          {rate}×
+          {rate}x
         </button>
       </div>
       <input
